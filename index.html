@@ -3,71 +3,103 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#2f6fed">
+<meta name="theme-color" content="#3b82f6">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Money Tracker</title>
 <style>
-:root{--bg:#f6f7f9;--card:#fff;--ink:#1c2230;--mute:#6b7385;--line:#e4e7ee;--acc:#2f6fed;--inc:#16a37f;--exp:#e0533d;--warn:#e8a317}
-@media(prefers-color-scheme:dark){:root{--bg:#12151c;--card:#1b2029;--ink:#eef1f7;--mute:#98a1b5;--line:#2a3140;--acc:#6f9bff;--inc:#35c9a0;--exp:#ff7d68;--warn:#f2b73d}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,sans-serif;padding-bottom:84px}
-.wrap{max-width:560px;margin:0 auto;padding:14px}
-h1{font-size:20px;margin:6px 0 12px}
-h2{font-size:15px;margin:18px 0 8px;color:var(--mute);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
-.row{display:flex;gap:8px;align-items:center}
+:root{--bg:#f2f7ff;--card:#fff;--ink:#16233b;--mute:#62759a;--line:#e1eaf8;--acc:#3b82f6;--acc2:#e6f0ff;--inc:#0fa57a;--exp:#f0455f;--warn:#f59e0b}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:104px}
+.wrap{max-width:560px;margin:0 auto;padding:18px 16px}
+h1{font-size:28px;margin:4px 0 16px;font-weight:750;letter-spacing:-.01em}
+h2{font-size:15px;margin:24px 2px 10px;color:var(--mute);font-weight:650;text-transform:uppercase;letter-spacing:.06em}
+.card{background:var(--card);border-radius:22px;padding:18px;margin-bottom:14px;box-shadow:0 2px 14px rgba(50,90,170,.08)}
+.row{display:flex;gap:10px;align-items:center}
 .grow{flex:1;min-width:0}
-.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
-.sum div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px}
-.sum small{display:block;color:var(--mute);font-size:12px}
-.sum b{font-size:15px;word-break:break-word}
+.hero{background:linear-gradient(135deg,#3b82f6,#6aa6ff);color:#fff;border-radius:26px;padding:22px;margin-bottom:14px;box-shadow:0 8px 24px rgba(59,130,246,.3)}
+.hero small{color:rgba(255,255,255,.85);font-size:15px}
+.hero .big{font-size:38px;font-weight:800;letter-spacing:-.02em;margin:2px 0 14px;word-break:break-word}
+.hero .big.neg{color:#ffe1e6}
+.hero .two{display:flex;gap:10px}
+.hero .two div{flex:1;background:rgba(255,255,255,.18);border-radius:16px;padding:10px 12px}
+.hero .two b{display:block;font-size:18px}
+.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.sum div{background:var(--card);border-radius:18px;padding:12px;box-shadow:0 2px 14px rgba(50,90,170,.08)}
+.sum small{display:block;color:var(--mute);font-size:14px}
+.sum b{font-size:17px;word-break:break-word}
 .inc{color:var(--inc)}.exp{color:var(--exp)}
-input,select,button{font:inherit;color:inherit}
-input,select{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:var(--card);margin-bottom:8px}
-button{padding:11px 14px;border:0;border-radius:10px;background:var(--acc);color:#fff;font-weight:600;cursor:pointer}
-button.ghost{background:transparent;color:var(--acc);border:1px solid var(--line)}
-button.small{padding:6px 10px;font-size:13px}
-button.del{background:transparent;color:var(--exp);padding:6px 8px}
-.seg{display:flex;gap:6px;margin-bottom:8px}
-.seg button{flex:1;background:var(--card);color:var(--ink);border:1px solid var(--line)}
-.seg button.on.e{background:var(--exp);color:#fff;border-color:var(--exp)}
-.seg button.on.i{background:var(--inc);color:#fff;border-color:var(--inc)}
-.seg button.on.l{background:var(--warn);color:#fff;border-color:var(--warn)}
-.bar{height:10px;border-radius:6px;background:var(--line);overflow:hidden;margin-top:6px}
-.bar i{display:block;height:100%;background:var(--acc)}
+input,select,textarea,button{font:inherit;color:inherit}
+input,select{width:100%;padding:14px;border:1.5px solid var(--line);border-radius:14px;background:#fff;margin-bottom:12px;font-size:18px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acc)}
+input.amt{font-size:30px;font-weight:750;padding:16px}
+.lb{display:block;font-size:15px;color:var(--mute);margin:0 2px 6px;font-weight:600}
+button{padding:15px 18px;border:0;border-radius:14px;background:var(--acc);color:#fff;font-weight:650;cursor:pointer;font-size:18px}
+button:active{transform:scale(.98)}
+button.ghost{background:var(--acc2);color:var(--acc)}
+button.small{padding:9px 14px;font-size:15px;border-radius:12px}
+button.del{background:transparent;color:var(--exp);padding:8px 10px}
+button.danger{background:var(--exp)}
+button.full{width:100%}
+.seg{display:flex;gap:6px;margin-bottom:14px;background:var(--acc2);padding:5px;border-radius:16px}
+.seg button{flex:1;background:transparent;color:var(--mute);padding:11px 6px;font-size:16px}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 6px rgba(50,90,170,.15)}
+.seg button.on.e{color:var(--exp)}.seg button.on.i{color:var(--inc)}.seg button.on.l{color:var(--warn)}
+.bar{height:12px;border-radius:8px;background:var(--acc2);overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;background:var(--acc);border-radius:8px}
 .bar i.over{background:var(--exp)}.bar i.near{background:var(--warn)}
-.item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.item{display:flex;align-items:center;gap:10px;padding:13px 0;border-bottom:1px solid var(--line)}
 .item:last-child{border-bottom:0}
-.item small{color:var(--mute)}
-.month{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.month b{font-size:17px}
-nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom)}
-nav{overflow-x:auto}
-nav button{flex:1 0 auto;min-width:62px;background:transparent;color:var(--mute);border-radius:0;padding:14px 10px;font-size:13px}
-nav button.on{color:var(--acc)}
-.banner{background:#fff4d6;color:#6a4a00;border-radius:10px;padding:10px;margin-bottom:12px;font-size:14px}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:96px;background:#222;color:#fff;padding:10px 16px;border-radius:20px;font-size:14px;max-width:90%}
-.empty{color:var(--mute);text-align:center;padding:16px 0}
+.item.tap{cursor:pointer}
+.item small,small{color:var(--mute);font-size:14px}
+.month{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.month b{font-size:20px}
+.menu{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--card);color:var(--ink);padding:18px;border-radius:20px;margin-bottom:10px;box-shadow:0 2px 14px rgba(50,90,170,.08)}
+.menu span.ic{font-size:26px}
+.menu small{display:block}
+nav{position:fixed;left:0;right:0;bottom:0;background:#fff;box-shadow:0 -4px 20px rgba(50,90,170,.12);display:flex;padding:6px 8px calc(6px + env(safe-area-inset-bottom));gap:4px;z-index:5}
+nav button{flex:1;background:transparent;color:var(--mute);border-radius:16px;padding:8px 4px;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:2px}
+nav button .ic{font-size:24px;line-height:1.1}
+nav button.on{color:var(--acc);background:var(--acc2)}
+.banner{background:#fff3d1;color:#6a4a00;border-radius:16px;padding:12px 14px;margin-bottom:14px;font-size:15px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:108px;background:#16233b;color:#fff;padding:12px 18px;border-radius:22px;font-size:16px;max-width:92%;display:flex;gap:12px;align-items:center;z-index:20}
+.toast button{background:rgba(255,255,255,.2);color:#fff}
+.empty{color:var(--mute);text-align:center;padding:18px 0}
+.ov{position:fixed;inset:0;background:rgba(22,35,59,.5);display:flex;align-items:center;justify-content:center;padding:20px;z-index:30}
+.dlg{background:#fff;border-radius:24px;padding:22px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.tag{display:inline-block;background:var(--acc2);color:var(--acc);border-radius:10px;padding:2px 8px;font-size:12px;font-weight:650;margin-left:6px;vertical-align:middle}
+.tag.off{background:#eef0f4;color:var(--mute)}
+label.chk{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:17px}
+label.chk input{width:22px;height:22px;margin:0}
+.lock{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+.dots span{display:inline-block;width:16px;height:16px;border-radius:50%;border:2px solid var(--acc);margin:0 6px}
+.dots span.f{background:var(--acc)}
+.pad{display:grid;grid-template-columns:repeat(3,78px);gap:14px}
+.pad button{width:78px;height:78px;border-radius:50%;font-size:28px;padding:0;background:#fff;color:var(--ink);box-shadow:0 2px 12px rgba(50,90,170,.12)}
 </style>
 </head>
 <body>
 <div class="wrap" id="app"></div>
 <script>
 "use strict";
+const I18N={"ui": {"id": {"Undo": "Urungkan", "Yes": "Ya", "Cancel": "Batal", "Type {0} to confirm": "Ketik {0} untuk konfirmasi", "Saving...": "Menyimpan...", "Synced": "Tersinkron", "Not synced: ": "Belum tersinkron: ", "Entry deleted": "Catatan dihapus", "Dinas: ": "Dinas: ", " (charged to office)": " (ditagih ke kantor)", " (advance)": " (uang muka)", "Charged to credit cards this month": "Ditagih ke kartu kredit bulan ini", "Total": "Total", "Charges only. Payments between your accounts aren't tracked here.": "Hanya tagihan. Pembayaran antar rekening tidak dicatat di sini.", "Left this month": "Sisa bulan ini", "Income": "Pemasukan", "Spent": "Pengeluaran", "Charged to office": "Ditagih ke kantor", "Not counted in your spending.": "Tidak dihitung sebagai pengeluaranmu.", "Friends owe you": "Teman berutang padamu", "Spending vs budget": "Pengeluaran vs budget", "No spending yet this month.": "Belum ada pengeluaran bulan ini.", "Latest": "Terbaru", "Nothing logged. Tap Add.": "Belum ada catatan. Ketuk Tambah.", "Home": "Beranda", "Add": "Tambah", "Plan": "Rencana", "More": "Lainnya", "Reading receipt...": "Membaca struk...", "Could not find a total. Try a clearer, flat photo.": "Total tidak ditemukan. Coba foto yang lebih jelas dan rata.", "Check the details below, then tap Save.": "Periksa detail di bawah, lalu ketuk Simpan.", "Receipt reading was not allowed.": "Pembacaan struk tidak diizinkan.", "Too many requests. Try again later.": "Terlalu banyak permintaan. Coba lagi nanti.", "Could not read the receipt. Try again.": "Struk tidak bisa dibaca. Coba lagi.", "Optional": "Opsional", "e.g. Elsa": "mis. Elsa", "Not a business trip": "Bukan dinas", "Months": "Bulan", "Monthly payment (blank = amount ÷ months)": "Cicilan per bulan (kosong = jumlah ÷ bulan)", "Enter an amount above 0": "Isi jumlah di atas 0", "Changes saved": "Perubahan disimpan", "Enter who you paid for": "Isi nama orang yang kamu talangi", "Saved. Not counted in your spending": "Tersimpan. Tidak dihitung sebagai pengeluaran", "Saved": "Tersimpan", "Expense": "Pengeluaran", "Lent": "Talangan", "Edit entry": "Ubah catatan", "Reading...": "Membaca...", "📷  Scan receipt": "📷  Scan struk", "Who did you pay for?": "Kamu talangi siapa?", "Amount (Rp)": "Jumlah (Rp)", "Category": "Kategori", "Wallet": "Dompet", "Business trip": "Dinas luar kota", "Date": "Tanggal", "Note": "Catatan", "Convert to cicilan": "Jadikan cicilan", "Monthly payment": "Cicilan per bulan", "The purchase counts in full today. Monthly payments start next month (Plan → Cicilan).": "Pembelian dihitung penuh hari ini. Cicilan mulai bulan depan (Rencana → Cicilan).", "Save changes": "Simpan perubahan", "Save": "Simpan", "Delete entry": "Hapus catatan", "No entries this month.": "Belum ada catatan bulan ini.", "Owed to you: {0}": "Utang ke kamu: {0}", "Nobody owes you.": "Tidak ada yang berutang.", "Received (Rp)": "Diterima (Rp)", "{0} paid by you": "{0} kamu bayar", "{0} still owed": "{0} belum dibayar", "settled": "lunas", "Paid in full": "Lunas", "Budget": "Budget", "Goals": "Target", "Cicilan": "Cicilan", "Budgets": "Total budget", "Monthly savings goals": "Tabungan bulanan", "Cicilan this month": "Cicilan bulan ini", "Planned vs income {0}": "Rencana vs pemasukan {0}", "No limit": "Tanpa batas", "Budget saved": "Budget disimpan", "Save budget": "Simpan budget", "Load 2027 plan?": "Muat rencana 2027?", "This replaces all your current budget limits with the 2027 plan. A restore point is saved first.": "Semua batas budget sekarang diganti dengan rencana 2027. Titik pemulihan disimpan dulu.", "Replace budgets": "Ganti budget", "2027 plan loaded": "Rencana 2027 dimuat", "Load my 2027 plan": "Muat rencana 2027 saya", "e.g. Laptop": "mis. Laptop", "Goal name": "Nama target", "Target": "Target", "Enter a name and target": "Isi nama dan target", "Goal saved": "Target disimpan", "Save goal": "Simpan target", "Add savings": "Tambah tabungan", "Delete goal?": "Hapus target?", "\"{0}\" and its saved amount will be removed.": "\"{0}\" beserta jumlah tabungannya akan dihapus.", "Delete goal": "Hapus target", "Delete": "Hapus", "{0} of {1}": "{0} dari {1}", "save {0}/month": "tabung {0}/bulan", "No goals yet.": "Belum ada target.", "This month": "Bulan ini", "Active": "Aktif", "Still to pay": "Sisa bayar", "Next 12 months": "12 bulan ke depan", "No cicilan due.": "Tidak ada cicilan jatuh tempo.", "New cicilan": "Cicilan baru", "Name": "Nama", "Total months": "Total bulan", "First payment month": "Bulan pembayaran pertama", "Fill in name, monthly amount, months and start": "Isi nama, cicilan per bulan, jumlah bulan, dan bulan mulai", "Cicilan saved": "Cicilan disimpan", "Save cicilan": "Simpan cicilan", "Delete cicilan?": "Hapus cicilan?", "\"{0}\" will be removed from your monthly commitments.": "\"{0}\" akan dihapus dari komitmen bulananmu.", "Delete cicilan": "Hapus cicilan", "{0}/month · {1} of {2} paid · ends {3} · {4} left": "{0}/bulan · {1} dari {2} dibayar · selesai {3} · sisa {4}", "No cicilan yet.": "Belum ada cicilan.", "Loaded": "Dimuat", "Load my 2 current cicilan": "Muat 2 cicilan saya saat ini", "Set the trip dates first": "Isi tanggal dinas dulu", "Pulled {0} expenses": "Menarik {0} pengeluaran", " and {0} advance": " dan {0} uang muka", "Copied": "Tersalin", "Trip name (e.g. Jakarta Aug)": "Nama dinas (mis. Jakarta Agu)", "Advance received (optional)": "Uang muka diterima (opsional)", "Business trips (dinas)": "Dinas luar kota", "New trip": "Dinas baru", "Start": "Mulai", "End": "Selesai", "Leave the advance empty if you will pull it from income you already logged (notes containing \"dinas\").": "Kosongkan uang muka jika akan diambil dari pemasukan yang sudah dicatat (catatan berisi \"dinas\").", "Enter a name and both dates": "Isi nama dan kedua tanggal", "Create trip": "Buat dinas", "Hide": "Tutup", "Open": "Buka", "Delete trip?": "Hapus dinas?", "\"{0}\" is removed. Its entries stay in your records but are no longer linked to the trip.": "\"{0}\" dihapus. Catatannya tetap ada tapi tidak lagi terhubung ke dinas.", "Delete trip": "Hapus dinas", "{0} to {1}": "{0} s/d {1}", " · closed": " · selesai", "Advance received": "Uang muka diterima", "Paid by you (not charged)": "Dibayar sendiri (tidak ditagih)", "To return to office": "Dikembalikan ke kantor", "Office to pay you": "Kantor membayar ke kamu", "Pull recorded data": "Tarik data tercatat", "Export claim CSV": "Ekspor CSV klaim", "Copy claim text": "Salin teks klaim", "Reopen": "Buka lagi", "Close trip": "Tutup dinas", "Advance": "Uang muka", " Charge": " Tagih", "No trips yet.": "Belum ada dinas.", "Not charged to office": "Tidak ditagih ke kantor", "Entries in these categories stay in your own spending. So do entries whose note looks like food (makan, sarapan, kopi, nasi...). You can change any single entry inside a trip.": "Catatan di kategori ini tetap masuk pengeluaranmu. Begitu juga catatan yang tampak seperti makanan (makan, sarapan, kopi, nasi...). Setiap catatan di dalam dinas bisa diubah satu per satu.", "Download not available here": "Unduhan tidak tersedia di sini", "Download was cancelled or failed": "Unduhan dibatalkan atau gagal", "Imported {0} new entries": "Diimpor {0} catatan baru", "Imported {0} entries": "Diimpor {0} catatan", " and added accounts to {0}": " dan menambah dompet ke {0}", "Could not read that file": "File tidak bisa dibaca", "Loaded {0} entries": "Dimuat {0} catatan", ", updated {0}": ", {0} diperbarui", "Could not load the history file": "File riwayat tidak bisa dimuat", "‹ Back": "‹ Kembali", "Wallets": "Dompet", "{0} active · add, rename, archive": "{0} aktif · tambah, ganti nama, arsip", "{0} trips": "{0} dinas", "{0} outstanding": "{0} belum dibayar", "Backup & import": "Backup & impor", "Export, import, restore": "Ekspor, impor, pulihkan", "e.g. Dana, Jago, Cash": "mis. Dana, Jago, Tunai", "New wallet": "Dompet baru", "This is a credit card": "Ini kartu kredit", "Enter a wallet name": "Isi nama dompet", "That wallet already exists": "Dompet itu sudah ada", "Wallet saved": "Dompet disimpan", "Save wallet": "Simpan dompet", "Credit card": "Kartu kredit", "Archived": "Diarsipkan", "Card": "Kartu", "Rename wallet": "Ganti nama dompet", "{0} entries will use the new name.": "{0} catatan akan memakai nama baru.", "{0} entries": "{0} catatan", "Rename": "Ganti nama", "Enter a name": "Isi nama", "That name is already used": "Nama itu sudah dipakai", "Renamed": "Nama diganti", "Restored": "Dipulihkan", "Restore": "Pulihkan", "{0} archived. History is kept.": "{0} diarsipkan. Riwayat tetap ada.", "Archive": "Arsipkan", "Delete wallet?": "Hapus dompet?", "\"{0}\" has no entries and will be removed for good.": "\"{0}\" tidak punya catatan dan akan dihapus permanen.", "Delete wallet": "Hapus dompet", "Has history, so it can only be archived.": "Punya riwayat, jadi hanya bisa diarsipkan.", "No wallets yet.": "Belum ada dompet.", "Archived wallets disappear from the Add form but keep their history.": "Dompet yang diarsipkan hilang dari form Tambah tapi riwayatnya tetap ada.", "Import data?": "Impor data?", "New entries are added to what you have; duplicates are skipped. A restore point is saved first.": "Catatan baru ditambahkan ke data kamu; duplikat dilewati. Titik pemulihan disimpan dulu.", "Import": "Impor", "Could not open that file": "File tidak bisa dibuka", "Or paste CSV / JSON text here": "Atau tempel teks CSV / JSON di sini", "Export": "Ekspor", "CSV opens in Excel or Google Sheets. JSON is a full backup.": "CSV bisa dibuka di Excel atau Google Sheets. JSON adalah backup lengkap.", "A .json backup, a .csv (date, type, category, amount, note), or the CSV from your old money app.": "Backup .json, file .csv (date, type, category, amount, note), atau CSV dari aplikasi keuangan lama kamu.", "Choose file": "Pilih file", "Load 2026 history?": "Muat riwayat 2026?", "Adds your built-in 2026 history. Duplicates are skipped. A restore point is saved first.": "Menambahkan riwayat 2026 bawaan. Duplikat dilewati. Titik pemulihan disimpan dulu.", "Load": "Muat", "Load my 2026 history": "Muat riwayat 2026 saya", "Paste some text first": "Tempel teks dulu", "Import pasted text": "Impor teks tempelan", "Sync": "Sinkron", "On. Your data follows your Claude account on every device.": "Aktif. Datamu mengikuti akun Claude di semua perangkat.", "Off. Sign in to Claude to sync across devices.": "Mati. Masuk ke Claude untuk sinkron antar perangkat.", "Safety": "Keamanan", "Before any import, plan load or reset, a restore point is saved automatically.": "Sebelum impor, muat rencana, atau reset, titik pemulihan disimpan otomatis.", "No restore point yet": "Belum ada titik pemulihan", "Restore previous version?": "Pulihkan versi sebelumnya?", "Your current data is replaced by the version from before the last big change.": "Data sekarang diganti dengan versi sebelum perubahan besar terakhir.", "Could not restore": "Gagal memulihkan", "Restore previous version": "Pulihkan versi sebelumnya", "Delete ALL data?": "Hapus SEMUA data?", "Entries, budgets, goals, cicilan, trips and wallets are erased on every synced device. Export a backup first.": "Catatan, budget, target, cicilan, dinas, dan dompet dihapus di semua perangkat yang tersinkron. Ekspor backup dulu.", "Delete everything": "Hapus semuanya", "All data deleted": "Semua data dihapus", "Delete all data": "Hapus semua data", "Money Tracker": "Money Tracker", "Sync is off here. Entries are kept on this device only, so export a backup.": "Sinkron mati. Catatan hanya tersimpan di perangkat ini, jadi ekspor backup.", "Language": "Bahasa", "Choose your language": "Pilih bahasa", "Language, English / Indonesia / 中文": "Bahasa, English / Indonesia / 中文", "Recurring": "Rutin", "Fixed this month": "Tetap bulan ini", "Paid": "Dibayar", "To pay": "Belum dibayar", "Due {0}": "Jatuh tempo {0}", "Pay": "Bayar", "Skip": "Lewati", "Skipped": "Dilewati", "Unskip": "Batal lewati", "Pay {0}?": "Bayar {0}?", "Due {0}. Change the amount if this month's bill is different.": "Jatuh tempo {0}. Ubah jumlah jika tagihan bulan ini berbeda.", "Paid and recorded": "Dibayar dan tercatat", "Nothing fixed this month.": "Tidak ada tagihan tetap bulan ini.", "Fixed vs budget": "Tetap vs budget", "no budget": "tanpa budget", "Paid items are normal entries, so they fill the category budget. Nothing is counted twice.": "Yang sudah dibayar menjadi catatan biasa, jadi mengisi budget kategori. Tidak ada yang terhitung dua kali.", "New recurring": "Rutin baru", "Edit recurring": "Ubah rutin", "e.g. Netflix, PLN": "mis. Netflix, PLN", "Repeats": "Berulang", "Monthly": "Bulanan", "Yearly": "Tahunan", "Due month": "Bulan jatuh tempo", "Due day (1-31)": "Tanggal jatuh tempo (1-31)", "Starts": "Mulai bulan", "Save recurring": "Simpan rutin", "Enter a name, amount and due day": "Isi nama, jumlah, dan tanggal jatuh tempo", "Recurring saved": "Rutin disimpan", "All recurring": "Semua rutin", "Stop": "Hentikan", "Resume": "Lanjutkan", "Stopped": "Dihentikan", "Edit": "Ubah", "Delete recurring?": "Hapus rutin?", "\"{0}\" will be removed. Entries you already paid stay in your records.": "\"{0}\" akan dihapus. Pengeluaran yang sudah dibayar tetap tercatat.", "Delete recurring": "Hapus rutin", "No recurring yet.": "Belum ada rutin.", "Monthly · day {0}": "Bulanan · tgl {0}", "Yearly · {0} {1}": "Tahunan · {0} {1}", "Due this month": "Jatuh tempo bulan ini", "See all": "Lihat semua", "Security": "Kunci PIN", "PIN lock, auto-lock after 1 minute": "Kunci PIN, otomatis terkunci setelah 1 menit", "Enter PIN": "Masukkan PIN", "Wrong PIN": "PIN salah", "Too many tries. Wait {0}s.": "Terlalu banyak percobaan. Tunggu {0} detik.", "Set PIN": "Atur PIN", "New PIN (4-6 digits)": "PIN baru (4-6 angka)", "Confirm PIN": "Ulangi PIN", "Current PIN": "PIN saat ini", "PINs do not match": "PIN tidak sama", "PIN must be 4-6 digits": "PIN harus 4-6 angka", "PIN set": "PIN diatur", "PIN changed": "PIN diganti", "PIN removed": "PIN dihapus", "Change PIN": "Ganti PIN", "Remove PIN": "Hapus PIN", "Lock now": "Kunci sekarang", "PIN lock is on": "Kunci PIN aktif", "PIN lock is off": "Kunci PIN mati", "This is a screen lock: it keeps people who pick up your device out of the app. It does not encrypt your data, so keep your device lock and Google 2-step verification on.": "Ini kunci layar: mencegah orang yang memegang perangkatmu membuka app. Data tidak dienkripsi, jadi tetap aktifkan kunci perangkat dan verifikasi 2 langkah Google.", "PIN lock is not available here": "Kunci PIN tidak tersedia di sini", "Forgot PIN?": "Lupa PIN?", "Reset with recovery code": "Reset dengan kode pemulihan", "Enter the recovery code you saved when you set the PIN. Your data stays untouched.": "Masukkan kode pemulihan yang kamu simpan saat mengatur PIN. Datamu tidak berubah.", "Recovery code": "Kode pemulihan", "Reset": "Reset", "Wrong recovery code": "Kode pemulihan salah", "Save your recovery code": "Simpan kode pemulihanmu", "Write this code down somewhere safe. It is the only way to reset a forgotten PIN: {0}": "Catat kode ini di tempat aman. Ini satu-satunya cara mereset PIN yang lupa: {0}", "OK, I saved it": "Oke, sudah kusimpan", "Google Drive sync": "Sinkron Google Drive", "Stores one private file in your own Google Drive, so your phone and PC share the same data. Setup steps are in the README on GitHub.": "Menyimpan satu file privat di Google Drive milikmu, jadi HP dan PC memakai data yang sama. Langkah setup ada di README di GitHub.", "Google OAuth Client ID": "Client ID Google OAuth", "Connect & sync": "Hubungkan & sinkron", "Sync now": "Sinkron sekarang", "Switch account": "Ganti akun", "Disconnect": "Putuskan", "Connected as {0}": "Terhubung sebagai {0}", "Disconnected": "Terputus", "Syncing...": "Menyinkronkan...", "Synced at {0}": "Tersinkron pukul {0}", "Not synced: {0}": "Belum tersinkron: {0}", "Paste your Google Client ID first": "Tempel Client ID Google dulu", "Could not load Google sign-in. Are you online?": "Login Google tidak bisa dimuat. Apakah kamu online?", "Sign-in was closed or blocked": "Login ditutup atau diblokir", "Switch Google account?": "Ganti akun Google?", "Data on this device will be merged into the new account's Drive file. For a clean start on the new account, export a backup and delete all data first.": "Data di perangkat ini akan digabung ke file Drive akun baru. Untuk mulai bersih di akun baru, ekspor backup dan hapus semua data dulu.", "Planned total": "Total rencana", "Monthly income": "Pemasukan bulanan", "e.g. salary": "mis. gaji"}, "zh": {"Undo": "撤销", "Yes": "是", "Cancel": "取消", "Type {0} to confirm": "输入 {0} 以确认", "Saving...": "正在保存…", "Synced": "已同步", "Not synced: ": "未同步：", "Entry deleted": "记录已删除", "Dinas: ": "出差：", " (charged to office)": "（向公司报销）", " (advance)": "（预支）", "Charged to credit cards this month": "本月信用卡消费", "Total": "合计", "Charges only. Payments between your accounts aren't tracked here.": "仅含消费。账户之间的还款不在此记录。", "Left this month": "本月剩余", "Income": "收入", "Spent": "支出", "Charged to office": "向公司报销", "Not counted in your spending.": "不计入你的支出。", "Friends owe you": "朋友欠你的钱", "Spending vs budget": "支出与预算", "No spending yet this month.": "本月暂无支出。", "Latest": "最近记录", "Nothing logged. Tap Add.": "暂无记录，请点“添加”。", "Home": "首页", "Add": "添加", "Plan": "计划", "More": "更多", "Reading receipt...": "正在识别小票…", "Could not find a total. Try a clearer, flat photo.": "未找到总额。请拍一张更清晰、平整的照片。", "Check the details below, then tap Save.": "请检查下方信息，然后点“保存”。", "Receipt reading was not allowed.": "未获准识别小票。", "Too many requests. Try again later.": "请求过多，请稍后再试。", "Could not read the receipt. Try again.": "无法识别小票，请重试。", "Optional": "可选", "e.g. Elsa": "例如 Elsa", "Not a business trip": "非出差", "Months": "月数", "Monthly payment (blank = amount ÷ months)": "每月还款（留空 = 金额 ÷ 月数）", "Enter an amount above 0": "请输入大于 0 的金额", "Changes saved": "修改已保存", "Enter who you paid for": "请填写你替谁垫付", "Saved. Not counted in your spending": "已保存，不计入你的支出", "Saved": "已保存", "Expense": "支出", "Lent": "垫付", "Edit entry": "编辑记录", "Reading...": "识别中…", "📷  Scan receipt": "📷  扫描小票", "Who did you pay for?": "替谁垫付？", "Amount (Rp)": "金额（Rp）", "Category": "类别", "Wallet": "钱包", "Business trip": "出差", "Date": "日期", "Note": "备注", "Convert to cicilan": "转为分期", "Monthly payment": "每月还款", "The purchase counts in full today. Monthly payments start next month (Plan → Cicilan).": "这笔消费今天按全额计入。分期从下月开始（计划 → 分期）。", "Save changes": "保存修改", "Save": "保存", "Delete entry": "删除记录", "No entries this month.": "本月暂无记录。", "Owed to you: {0}": "欠你：{0}", "Nobody owes you.": "没有人欠你。", "Received (Rp)": "已收到（Rp）", "{0} paid by you": "你垫付 {0}", "{0} still owed": "还欠 {0}", "settled": "已结清", "Paid in full": "已还清", "Budget": "预算", "Goals": "目标", "Cicilan": "分期", "Budgets": "预算合计", "Monthly savings goals": "每月储蓄目标", "Cicilan this month": "本月分期", "Planned vs income {0}": "计划与收入 {0}", "No limit": "不限", "Budget saved": "预算已保存", "Save budget": "保存预算", "Load 2027 plan?": "载入 2027 计划？", "This replaces all your current budget limits with the 2027 plan. A restore point is saved first.": "当前所有预算上限将被 2027 计划替换。会先保存一个还原点。", "Replace budgets": "替换预算", "2027 plan loaded": "已载入 2027 计划", "Load my 2027 plan": "载入我的 2027 计划", "e.g. Laptop": "例如 笔记本电脑", "Goal name": "目标名称", "Target": "目标金额", "Enter a name and target": "请填写名称和目标金额", "Goal saved": "目标已保存", "Save goal": "保存目标", "Add savings": "添加储蓄", "Delete goal?": "删除目标？", "\"{0}\" and its saved amount will be removed.": "“{0}”及其已存金额将被删除。", "Delete goal": "删除目标", "Delete": "删除", "{0} of {1}": "{0} / {1}", "save {0}/month": "每月存 {0}", "No goals yet.": "暂无目标。", "This month": "本月", "Active": "进行中", "Still to pay": "待还", "Next 12 months": "未来 12 个月", "No cicilan due.": "没有待还分期。", "New cicilan": "新增分期", "Name": "名称", "Total months": "总月数", "First payment month": "首期还款月份", "Fill in name, monthly amount, months and start": "请填写名称、每月金额、月数和起始月", "Cicilan saved": "分期已保存", "Save cicilan": "保存分期", "Delete cicilan?": "删除分期？", "\"{0}\" will be removed from your monthly commitments.": "“{0}”将从每月固定支出中移除。", "Delete cicilan": "删除分期", "{0}/month · {1} of {2} paid · ends {3} · {4} left": "每月 {0} · 已还 {1}/{2} 期 · {3} 结束 · 剩余 {4}", "No cicilan yet.": "暂无分期。", "Loaded": "已载入", "Load my 2 current cicilan": "载入我当前的 2 笔分期", "Set the trip dates first": "请先设置出差日期", "Pulled {0} expenses": "已导入 {0} 笔支出", " and {0} advance": "，以及 {0} 笔预支", "Copied": "已复制", "Trip name (e.g. Jakarta Aug)": "出差名称（例如 雅加达8月）", "Advance received (optional)": "已收预支（可选）", "Business trips (dinas)": "出差", "New trip": "新增出差", "Start": "开始", "End": "结束", "Leave the advance empty if you will pull it from income you already logged (notes containing \"dinas\").": "如果要从已记录的收入中导入预支（备注含“dinas”），请留空。", "Enter a name and both dates": "请填写名称和起止日期", "Create trip": "创建出差", "Hide": "收起", "Open": "展开", "Delete trip?": "删除出差？", "\"{0}\" is removed. Its entries stay in your records but are no longer linked to the trip.": "“{0}”将被删除。相关记录仍保留，但不再关联该出差。", "Delete trip": "删除出差", "{0} to {1}": "{0} 至 {1}", " · closed": " · 已结束", "Advance received": "已收预支", "Paid by you (not charged)": "自付（不报销）", "To return to office": "需退还公司", "Office to pay you": "公司应付你", "Pull recorded data": "导入已记录数据", "Export claim CSV": "导出报销 CSV", "Copy claim text": "复制报销文本", "Reopen": "重新开启", "Close trip": "结束出差", "Advance": "预支", " Charge": " 报销", "No trips yet.": "暂无出差。", "Not charged to office": "不向公司报销", "Entries in these categories stay in your own spending. So do entries whose note looks like food (makan, sarapan, kopi, nasi...). You can change any single entry inside a trip.": "这些类别的记录计入你自己的支出，备注像餐饮的记录（makan、sarapan、kopi、nasi……）也一样。出差内的每条记录都可以单独修改。", "Download not available here": "此处无法下载", "Download was cancelled or failed": "下载已取消或失败", "Imported {0} new entries": "已导入 {0} 条新记录", "Imported {0} entries": "已导入 {0} 条记录", " and added accounts to {0}": "，并为 {0} 条补充了钱包", "Could not read that file": "无法读取该文件", "Loaded {0} entries": "已载入 {0} 条记录", ", updated {0}": "，更新 {0} 条", "Could not load the history file": "无法载入历史文件", "‹ Back": "‹ 返回", "Wallets": "钱包", "{0} active · add, rename, archive": "{0} 个启用 · 添加、重命名、归档", "{0} trips": "{0} 次出差", "{0} outstanding": "未还 {0}", "Backup & import": "备份与导入", "Export, import, restore": "导出、导入、还原", "e.g. Dana, Jago, Cash": "例如 Dana、Jago、现金", "New wallet": "新钱包", "This is a credit card": "这是信用卡", "Enter a wallet name": "请输入钱包名称", "That wallet already exists": "该钱包已存在", "Wallet saved": "钱包已保存", "Save wallet": "保存钱包", "Credit card": "信用卡", "Archived": "已归档", "Card": "卡", "Rename wallet": "重命名钱包", "{0} entries will use the new name.": "{0} 条记录将使用新名称。", "{0} entries": "{0} 条记录", "Rename": "重命名", "Enter a name": "请输入名称", "That name is already used": "该名称已被使用", "Renamed": "已重命名", "Restored": "已恢复", "Restore": "恢复", "{0} archived. History is kept.": "{0} 已归档，历史记录保留。", "Archive": "归档", "Delete wallet?": "删除钱包？", "\"{0}\" has no entries and will be removed for good.": "“{0}”没有任何记录，将被永久删除。", "Delete wallet": "删除钱包", "Has history, so it can only be archived.": "已有记录，只能归档。", "No wallets yet.": "暂无钱包。", "Archived wallets disappear from the Add form but keep their history.": "已归档的钱包不再出现在添加表单中，但历史记录保留。", "Import data?": "导入数据？", "New entries are added to what you have; duplicates are skipped. A restore point is saved first.": "新记录会添加到现有数据中，重复项将跳过。会先保存还原点。", "Import": "导入", "Could not open that file": "无法打开该文件", "Or paste CSV / JSON text here": "或在此粘贴 CSV / JSON 文本", "Export": "导出", "CSV opens in Excel or Google Sheets. JSON is a full backup.": "CSV 可用 Excel 或 Google 表格打开。JSON 是完整备份。", "A .json backup, a .csv (date, type, category, amount, note), or the CSV from your old money app.": ".json 备份、.csv（date、type、category、amount、note）或旧记账 App 导出的 CSV。", "Choose file": "选择文件", "Load 2026 history?": "载入 2026 历史？", "Adds your built-in 2026 history. Duplicates are skipped. A restore point is saved first.": "添加内置的 2026 历史记录，重复项将跳过。会先保存还原点。", "Load": "载入", "Load my 2026 history": "载入我的 2026 历史", "Paste some text first": "请先粘贴文本", "Import pasted text": "导入粘贴的文本", "Sync": "同步", "On. Your data follows your Claude account on every device.": "已开启。数据会跟随你的 Claude 账号同步到所有设备。", "Off. Sign in to Claude to sync across devices.": "未开启。登录 Claude 后可跨设备同步。", "Safety": "安全", "Before any import, plan load or reset, a restore point is saved automatically.": "导入、载入计划或重置之前，会自动保存还原点。", "No restore point yet": "暂无还原点", "Restore previous version?": "恢复到上一版本？", "Your current data is replaced by the version from before the last big change.": "当前数据将被上一次大改动之前的版本替换。", "Could not restore": "无法恢复", "Restore previous version": "恢复上一版本", "Delete ALL data?": "删除全部数据？", "Entries, budgets, goals, cicilan, trips and wallets are erased on every synced device. Export a backup first.": "记录、预算、目标、分期、出差和钱包将在所有已同步设备上被清除。请先导出备份。", "Delete everything": "全部删除", "All data deleted": "全部数据已删除", "Delete all data": "删除全部数据", "Money Tracker": "个人记账", "Sync is off here. Entries are kept on this device only, so export a backup.": "同步未开启。记录只保存在本机，请导出备份。", "Language": "语言", "Choose your language": "选择语言", "Language, English / Indonesia / 中文": "语言：English / Indonesia / 中文", "Recurring": "定期", "Fixed this month": "本月固定支出", "Paid": "已付", "To pay": "待付", "Due {0}": "到期 {0}", "Pay": "支付", "Skip": "跳过", "Skipped": "已跳过", "Unskip": "取消跳过", "Pay {0}?": "支付 {0}？", "Due {0}. Change the amount if this month's bill is different.": "到期 {0}。如本月账单金额不同，请修改。", "Paid and recorded": "已支付并记录", "Nothing fixed this month.": "本月没有固定支出。", "Fixed vs budget": "固定支出与预算", "no budget": "无预算", "Paid items are normal entries, so they fill the category budget. Nothing is counted twice.": "已支付的项目就是普通记录，会占用该类别预算，不会重复计算。", "New recurring": "新增定期支出", "Edit recurring": "编辑定期支出", "e.g. Netflix, PLN": "例如 Netflix、电费", "Repeats": "重复频率", "Monthly": "每月", "Yearly": "每年", "Due month": "到期月份", "Due day (1-31)": "到期日（1-31）", "Starts": "起始月份", "Save recurring": "保存定期支出", "Enter a name, amount and due day": "请填写名称、金额和到期日", "Recurring saved": "定期支出已保存", "All recurring": "全部定期支出", "Stop": "停用", "Resume": "恢复", "Stopped": "已停用", "Edit": "编辑", "Delete recurring?": "删除定期支出？", "\"{0}\" will be removed. Entries you already paid stay in your records.": "“{0}”将被删除。已支付的记录会保留。", "Delete recurring": "删除定期支出", "No recurring yet.": "暂无定期支出。", "Monthly · day {0}": "每月 · {0} 日", "Yearly · {0} {1}": "每年 · {1} {0} 日", "Due this month": "本月到期", "See all": "查看全部", "Security": "安全锁", "PIN lock, auto-lock after 1 minute": "PIN 锁，离开 1 分钟后自动锁定", "Enter PIN": "输入 PIN", "Wrong PIN": "PIN 错误", "Too many tries. Wait {0}s.": "尝试次数过多，请等待 {0} 秒。", "Set PIN": "设置 PIN", "New PIN (4-6 digits)": "新 PIN（4-6 位数字）", "Confirm PIN": "确认 PIN", "Current PIN": "当前 PIN", "PINs do not match": "两次 PIN 不一致", "PIN must be 4-6 digits": "PIN 必须为 4-6 位数字", "PIN set": "PIN 已设置", "PIN changed": "PIN 已更改", "PIN removed": "PIN 已移除", "Change PIN": "更改 PIN", "Remove PIN": "移除 PIN", "Lock now": "立即锁定", "PIN lock is on": "PIN 锁已开启", "PIN lock is off": "PIN 锁未开启", "This is a screen lock: it keeps people who pick up your device out of the app. It does not encrypt your data, so keep your device lock and Google 2-step verification on.": "这只是屏幕锁：能挡住拿到你设备的人打开 App，但不会加密数据，所以请同时开启设备锁和 Google 两步验证。", "PIN lock is not available here": "此处无法使用 PIN 锁", "Forgot PIN?": "忘记 PIN？", "Reset with recovery code": "用恢复码重置", "Enter the recovery code you saved when you set the PIN. Your data stays untouched.": "输入设置 PIN 时保存的恢复码。你的数据不会受影响。", "Recovery code": "恢复码", "Reset": "重置", "Wrong recovery code": "恢复码错误", "Save your recovery code": "请保存你的恢复码", "Write this code down somewhere safe. It is the only way to reset a forgotten PIN: {0}": "请把这个码记在安全的地方。忘记 PIN 时只能靠它重置：{0}", "OK, I saved it": "好的，已保存", "Google Drive sync": "Google 云端硬盘同步", "Stores one private file in your own Google Drive, so your phone and PC share the same data. Setup steps are in the README on GitHub.": "在你自己的 Google 云端硬盘里保存一个私有文件，让手机和电脑共用同一份数据。设置步骤见 GitHub 上的 README。", "Google OAuth Client ID": "Google OAuth 客户端 ID", "Connect & sync": "连接并同步", "Sync now": "立即同步", "Switch account": "切换账号", "Disconnect": "断开连接", "Connected as {0}": "已连接：{0}", "Disconnected": "已断开", "Syncing...": "正在同步…", "Synced at {0}": "已于 {0} 同步", "Not synced: {0}": "未同步：{0}", "Paste your Google Client ID first": "请先粘贴 Google 客户端 ID", "Could not load Google sign-in. Are you online?": "无法加载 Google 登录，请检查网络。", "Sign-in was closed or blocked": "登录被关闭或被拦截", "Switch Google account?": "切换 Google 账号？", "Data on this device will be merged into the new account's Drive file. For a clean start on the new account, export a backup and delete all data first.": "本设备的数据将合并到新账号的云端文件中。如想让新账号从空白开始，请先导出备份并删除全部数据。", "Planned total": "计划合计", "Monthly income": "每月收入", "e.g. salary": "例如 工资"}}, "cat": {"id": {"Food": "Makanan", "Food at Work": "Makan di Kantor", "Date": "Kencan", "Social": "Sosial", "Shopping": "Belanja", "Home Bills": "Tagihan Rumah", "Car": "Mobil", "Kantor": "Kantor", "Insurance": "Asuransi", "Mother Shopping": "Belanja Mama", "Papa": "Papa", "Health": "Kesehatan", "Subscription": "Langganan", "Education": "Pendidikan", "Other": "Lainnya", "Salary": "Gaji", "Refunds": "Refund", "Awards": "Hadiah", "Loans": "Pinjaman"}, "zh": {"Food": "餐饮", "Food at Work": "工作餐", "Date": "约会", "Social": "社交", "Shopping": "购物", "Home Bills": "家庭账单", "Car": "汽车", "Kantor": "公司", "Insurance": "保险", "Mother Shopping": "给妈妈购物", "Papa": "爸爸", "Health": "健康", "Subscription": "订阅", "Education": "教育", "Other": "其他", "Salary": "工资", "Refunds": "退款", "Awards": "奖金", "Loans": "借款"}}};
+let lang=(()=>{try{const l=localStorage.getItem("mt_lang");if(l==="en"||l==="id"||l==="zh")return l;}catch(e){}const n=String(navigator.language||"en").toLowerCase();return n.indexOf("id")===0?"id":n.indexOf("zh")===0?"zh":"en";})();
+const trs=s=>{const m=I18N.ui[lang];return(m&&m[s]!==undefined)?m[s]:s;};
+const T=(k,...a)=>trs(k).replace(/\{(\d)\}/g,(_,i)=>a[i]);
+const ct=c=>{const m=I18N.cat[lang];return(m&&m[c])||c;};
+function setLang(l){lang=l;try{localStorage.setItem("mt_lang",l);}catch(e){}document.documentElement.lang=l==="zh"?"zh-CN":l;render();}
 const EXP_CATS=["Food","Food at Work","Date","Social","Shopping","Home Bills","Car","Kantor","Insurance","Mother Shopping","Papa","Health","Subscription","Education","Other"];
 const INC_CATS=["Salary","Refunds","Awards","Loans","Other"];
 const ACCTS=["Cash","Bank BCA","Bank Permata","Bank Krom","Bank Seabank","Bank Tabungan bersama","OVO","Gopay","Credit Card BCA","Credit Card Permata"];
-const isCard=a=>/^Credit Card/.test(a||"");
 const nowYm=()=>new Date().toISOString().slice(0,7);
 const mi=m=>{const [y,mo]=m.split("-").map(Number);return y*12+mo-1;};
 const miToYm=n=>Math.floor(n/12)+"-"+String(n%12+1).padStart(2,"0");
 const cActive=(c,M)=>mi(M)>=mi(c.first)&&mi(M)<mi(c.first)+c.months;
 const cicilanFor=M=>(S.cicilan||[]).filter(c=>cActive(c,M)).reduce((a,c)=>a+c.monthly,0);
 const cPaid=c=>Math.max(0,Math.min(c.months,mi(nowYm())-mi(c.first)+1));
-let S={tx:[],budgets:{},goals:[],cicilan:[],loans:[],trips:[],del:{},rev:0};
-let tab="home", ym=new Date().toISOString().slice(0,7), addType="expense", toastMsg="";
+let S={tx:[],budgets:{},goals:[],cicilan:[],loans:[],trips:[],recurring:[],rev:0};
+let tab="home", ym=new Date().toISOString().slice(0,7), addType="expense";
 
 const idr=n=>"Rp"+Math.round(n).toLocaleString("id-ID");
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
@@ -77,41 +109,94 @@ function h(tag,props,...kids){
     if(k==="class")e.className=props[k];
     else if(k.startsWith("on"))e.addEventListener(k.slice(2),props[k]);
     else if(k==="value")e.value=props[k];
+    else if(k==="placeholder")e.setAttribute(k,trs(props[k]));
     else e.setAttribute(k,props[k]);
   }
-  for(const c of kids.flat()){ if(c==null||c===false)continue; e.append(c.nodeType?c:document.createTextNode(String(c))); }
+  for(const c of kids.flat()){ if(c==null||c===false)continue; e.append(c.nodeType?c:document.createTextNode(trs(String(c)))); }
   return e;
 }
-function toast(m){toastMsg=m;render();setTimeout(()=>{if(toastMsg===m){toastMsg="";render();}},2600);}
+let toastTimer=null;
+function toast(m,undo){
+  document.querySelectorAll(".toast").forEach(n=>n.remove());
+  const el=h("div",{class:"toast"},h("span",null,m),undo?h("button",{class:"small",onclick:()=>{el.remove();undo();}},"Undo"):null);
+  document.body.append(el);
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.remove(),undo?6000:2600);
+}
+/* confirmation dialog: o={title,body,ok,danger,word,field:{value,placeholder},onOk(val)} */
+function ask(o){
+  document.querySelectorAll(".ov").forEach(n=>n.remove());
+  const inp=(o.word||o.field)?h("input",{type:"text",placeholder:o.word?T("Type {0} to confirm",o.word):((o.field&&o.field.placeholder)||""),value:(o.field&&o.field.value)||"",style:"margin-bottom:14px",inputmode:(o.field&&o.field.numeric)?"numeric":"text"}):null;
+  const close=()=>ov.remove();
+  const okb=h("button",{class:"grow"+(o.danger===false?"":" danger"),onclick:()=>{
+    if(o.word&&inp.value.trim()!==o.word){inp.focus();return;}
+    const v=inp?inp.value.trim():"";
+    const r=o.onOk(v);
+    if(r&&typeof r.then==="function"){r.then(x=>{if(x!==false)close();});return;}
+    if(r===false)return;
+    close();}},o.ok||"Yes");
+  const ov=h("div",{class:"ov",onclick:e=>{if(e.target===ov)close();}},
+    h("div",{class:"dlg"},h("b",{style:"font-size:21px"},o.title),
+      h("p",{style:"color:var(--mute);margin:8px 0 16px"},o.body||""),
+      inp,h("div",{class:"row"},h("button",{class:"ghost grow",onclick:close},"Cancel"),okb)));
+  document.body.append(ov);
+  if(inp)setTimeout(()=>inp.focus(),50);
+}
+let prevState=null;
+function snapshotBefore(){try{prevState=JSON.stringify(S);localStorage.setItem("mt_prev",prevState);}catch(e){}}
+function getPrev(){if(prevState)return prevState;try{return localStorage.getItem("mt_prev");}catch(e){return null;}}
+const emptyState=()=>({tx:[],budgets:{},goals:[],cicilan:[],loans:[],trips:[],recurring:[],rev:0});
+/* ---------- wallets ---------- */
+const slug=s=>String(s).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const walletBy=n=>(S.wallets||[]).find(w=>w.name===n);
+const isCard=a=>{const w=walletBy(a);return w?!!w.card:/^Credit Card/.test(a||"");};
+function ensureWallets(){
+  if(!S.wallets)S.wallets=ACCTS.map(n=>({id:"w_"+slug(n),name:n,card:/^Credit Card/.test(n)}));
+  const have=new Set(S.wallets.map(w=>w.name));
+  const add=n=>{if(n&&!have.has(n)){have.add(n);S.wallets.push({id:"w_"+slug(n),name:n,card:/^Credit Card/.test(n)});}};
+  S.tx.forEach(t=>add(t.acct));(S.loans||[]).forEach(l=>add(l.acct));
+}
+function walletNames(cur){
+  const a=(S.wallets||[]).filter(w=>!w.archived).map(w=>w.name);
+  return cur&&a.indexOf(cur)<0?a.concat([cur]):a;
+}
+const walletUse=n=>S.tx.filter(t=>t.acct===n).length+(S.loans||[]).filter(l=>l.acct===n).length;
 
-/* ---------- storage ---------- */
-let gMsg="", gToken=null, gTokenExp=0, syncTimer=null;
-const tomb=id=>{(S.del=S.del||{})[id]=Date.now();};
+/* ---------- storage + Google Drive sync (standalone) ---------- */
+let gMsg="",gErr=false,gToken=null,gTokenExp=0,gEmail="",syncTimer=null,syncing=false;
+const COLS=["tx","loans","cicilan","goals","trips","wallets","recurring"];
+let lastIds=null;
+const idsNow=()=>{const s=new Set();COLS.forEach(k=>(S[k]||[]).forEach(x=>s.add(x.id)));return s;};
+function trackDeletes(){
+  S.del=S.del||{};const cur=idsNow();
+  cur.forEach(id=>{delete S.del[id];});
+  if(lastIds)lastIds.forEach(id=>{if(!cur.has(id))S.del[id]=Date.now();});
+  lastIds=cur;
+}
+function norm(d){return{tx:d.tx||[],budgets:d.budgets||{},goals:d.goals||[],cicilan:d.cicilan||[],loans:d.loans||[],trips:d.trips||[],wallets:d.wallets,recurring:d.recurring||[],noClaim:d.noClaim,income:d.income,del:d.del||{},rev:d.rev||0};}
 function persist(){try{localStorage.setItem("mt_data",JSON.stringify(S));}catch(e){}}
-function norm(d){return{tx:d.tx||[],budgets:d.budgets||{},goals:d.goals||[],cicilan:d.cicilan||[],loans:d.loans||[],trips:d.trips||[],noClaim:d.noClaim,income:d.income,del:d.del||{},rev:d.rev||0};}
 function loadLocal(){try{const raw=localStorage.getItem("mt_data");if(!raw)return;const d=JSON.parse(raw);if(d&&typeof d==="object")S=norm(d);}catch(e){}}
 function save(){
-  S.rev=Date.now();
-  persist();
-  render();
-  if(gToken&&Date.now()<gTokenExp-60000){clearTimeout(syncTimer);syncTimer=setTimeout(()=>syncNow(false),4000);}
+  ensureWallets();trackDeletes();
+  S.rev=Date.now();persist();render();
+  if(gToken&&Date.now()<gTokenExp-60000){clearTimeout(syncTimer);syncTimer=setTimeout(()=>syncNow(),4000);}
 }
-/* ---------- Google Drive sync (private app folder) ---------- */
-const GSCOPE="https://www.googleapis.com/auth/drive.appdata";
+const GSCOPE="https://www.googleapis.com/auth/drive.appdata email";
 const gCid=()=>{try{return localStorage.getItem("mt_gcid")||"";}catch(e){return "";}};
 function loadGis(){return new Promise((res,rej)=>{
   if(window.google&&google.accounts&&google.accounts.oauth2)return res();
-  const sc=document.createElement("script");sc.src="https://accounts.google.com/gsi/client";sc.onload=res;sc.onerror=()=>rej(new Error("Could not load Google sign-in. Are you online?"));document.head.appendChild(sc);});}
-async function getToken(){
-  if(gToken&&Date.now()<gTokenExp-60000)return gToken;
-  const cid=gCid();if(!cid)throw new Error("Paste your Google Client ID first");
-  await loadGis();
-  return new Promise((res,rej)=>{
+  const sc=document.createElement("script");sc.src="https://accounts.google.com/gsi/client";sc.onload=res;sc.onerror=()=>rej(new Error(T("Could not load Google sign-in. Are you online?")));document.head.appendChild(sc);});}
+function getToken(force){
+  if(!force&&gToken&&Date.now()<gTokenExp-60000)return Promise.resolve(gToken);
+  const cid=gCid();if(!cid)return Promise.reject(new Error(T("Paste your Google Client ID first")));
+  return loadGis().then(()=>new Promise((res,rej)=>{
     const c=google.accounts.oauth2.initTokenClient({client_id:cid,scope:GSCOPE,
-      callback:r=>{if(r.error)return rej(new Error(r.error_description||r.error));gToken=r.access_token;gTokenExp=Date.now()+(r.expires_in||3600)*1000;res(gToken);},
-      error_callback:e=>rej(new Error((e&&e.type)||"Sign-in was closed or blocked"))});
-    c.requestAccessToken();
-  });
+      callback:r=>{if(r.error)return rej(new Error(r.error_description||r.error));gToken=r.access_token;gTokenExp=Date.now()+(r.expires_in||3600)*1000;fetchEmail();res(gToken);},
+      error_callback:()=>rej(new Error(T("Sign-in was closed or blocked")))});
+    c.requestAccessToken(force?{prompt:"select_account"}:{});
+  }));
+}
+async function fetchEmail(){
+  try{const r=await fetch("https://www.googleapis.com/oauth2/v3/userinfo",{headers:{Authorization:"Bearer "+gToken}});if(r.ok){const j=await r.json();gEmail=j.email||"";render();}}catch(e){}
 }
 const AUTH=t=>({Authorization:"Bearer "+t});
 async function dFind(t){
@@ -131,26 +216,47 @@ function mergeStates(L,R){
   L=norm(L);R=norm(R);
   const del=Object.assign({},R.del,L.del);
   const newer=(L.rev>=R.rev)?L:R, older=(newer===L)?R:L;
-  const un=k=>{const m=new Map();older[k].forEach(x=>m.set(x.id,x));newer[k].forEach(x=>m.set(x.id,x));return[...m.values()].filter(x=>!del[x.id]);};
-  return{tx:un("tx"),loans:un("loans"),cicilan:un("cicilan"),goals:un("goals"),trips:un("trips"),budgets:newer.budgets,noClaim:newer.noClaim,income:newer.income!==undefined?newer.income:older.income,del,rev:Date.now()};
+  const un=k=>{const m=new Map();(older[k]||[]).forEach(x=>m.set(x.id,x));(newer[k]||[]).forEach(x=>m.set(x.id,x));return Array.from(m.values()).filter(x=>!del[x.id]);};
+  return{tx:un("tx"),loans:un("loans"),cicilan:un("cicilan"),goals:un("goals"),trips:un("trips"),wallets:un("wallets"),recurring:un("recurring"),budgets:newer.budgets,noClaim:newer.noClaim,income:newer.income!==undefined?newer.income:older.income,del,rev:Date.now()};
 }
-async function syncNow(){
-  gMsg="Syncing...";render();
+async function syncNow(force){
+  if(syncing)return;syncing=true;gMsg=T("Syncing...");gErr=false;render();
   try{
-    const t=await getToken();
+    const t=await getToken(force);
     const f=await dFind(t);
     if(f){const R=await dRead(t,f.id);S=mergeStates(S,R);}
     else S.rev=Date.now();
-    persist();
+    ensureWallets();lastIds=idsNow();persist();
     await dWrite(t,f&&f.id,S);
-    gMsg="Synced at "+new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
-  }catch(e){gMsg="Not synced: "+(e&&e.message||"error");}
-  render();
+    gMsg=T("Synced at {0}",new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"}));
+  }catch(e){gMsg=T("Not synced: {0}",(e&&e.message)||"error");gErr=true;}
+  syncing=false;render();
 }
+function switchAcct(){
+  ask({title:"Switch Google account?",body:"Data on this device will be merged into the new account's Drive file. For a clean start on the new account, export a backup and delete all data first.",ok:"Switch account",danger:false,onOk:()=>{gToken=null;gEmail="";syncNow(true);}});
+}
+function disconnect(){
+  try{if(gToken&&window.google&&google.accounts&&google.accounts.oauth2)google.accounts.oauth2.revoke(gToken,()=>{});}catch(e){}
+  gToken=null;gTokenExp=0;gEmail="";gErr=false;gMsg=T("Disconnected");render();
+}
+function viewDrive(){
+  const cid=h("input",{type:"text",placeholder:"Google OAuth Client ID",value:gCid(),style:"margin-top:8px"});
+  const connected=!!gToken&&Date.now()<gTokenExp;
+  return h("div",{class:"card"},h("b",null,"Google Drive sync"),
+    h("p",{style:"color:var(--mute);margin:4px 0 0;font-size:16px"},"Stores one private file in your own Google Drive, so your phone and PC share the same data. Setup steps are in the README on GitHub."),
+    connected&&gEmail?h("p",{style:"margin:10px 0 0"},T("Connected as {0}",gEmail)):null,
+    cid,
+    h("div",{class:"row"},
+      h("button",{class:"grow",onclick:()=>{try{localStorage.setItem("mt_gcid",cid.value.trim());}catch(e){}syncNow();}},connected?"Sync now":"Connect & sync"),
+      connected?h("button",{class:"ghost",onclick:switchAcct},"Switch account"):null),
+    connected?h("button",{class:"ghost full",style:"margin-top:10px",onclick:disconnect},"Disconnect"):null,
+    gMsg?h("small",{style:"display:block;margin-top:10px;color:"+(gErr?"var(--exp)":"var(--mute)")},gMsg):null);
+}
+
 /* ---------- helpers ---------- */
 function monthTx(){return S.tx.filter(t=>t.date.slice(0,7)===ym).sort((a,b)=>b.date.localeCompare(a.date));}
 function shiftMonth(d){const [y,m]=ym.split("-").map(Number);const dt=new Date(y,m-1+d,1);ym=dt.getFullYear()+"-"+String(dt.getMonth()+1).padStart(2,"0");render();}
-function monthName(){const [y,m]=ym.split("-").map(Number);return new Date(y,m-1,1).toLocaleDateString("en-US",{month:"long",year:"numeric"});}
+function monthName(){const [y,m]=ym.split("-").map(Number);return new Date(y,m-1,1).toLocaleDateString(lang==="id"?"id-ID":lang==="zh"?"zh-CN":"en-US",{month:"long",year:"numeric"});}
 let openTrip=null, claimText="", lastTrip="";
 const NOCLAIM_DEFAULT=["Shopping","Date","Social","Food","Food at Work"];
 const noClaimList=()=>S.noClaim||NOCLAIM_DEFAULT;
@@ -169,11 +275,23 @@ function tripStats(tr){
 }
 function totals(list){let i=0,e=0;list.forEach(t=>t.type==="income"?i+=t.amt:e+=t.amt);return{i,e};}
 function monthNav(){return h("div",{class:"month"},h("button",{class:"ghost small",onclick:()=>shiftMonth(-1)},"‹"),h("b",null,monthName()),h("button",{class:"ghost small",onclick:()=>shiftMonth(1)},"›"));}
+function resetDraft(){draft={amt:"",cat:"",date:"",note:"",acct:"",cOn:false,cMonths:"6",cMonthly:"",person:""};}
+let edit=null,more=null,planTab="budget",budDraft=null;
+function startEdit(t){
+  edit={id:t.id,from:tab};addType=t.type;
+  draft={amt:String(t.amt),cat:t.cat,date:t.date,note:t.note||"",acct:t.acct||"",cOn:false,cMonths:"6",cMonthly:"",person:"",trip:t.trip||""};
+  tab="add";render();window.scrollTo(0,0);
+}
+function endEdit(){const f=edit&&edit.from;edit=null;resetDraft();tab=f&&f!=="add"?f:"add";}
+function delTx(t){
+  S.tx=S.tx.filter(x=>x.id!==t.id);
+  if(edit&&edit.id===t.id)endEdit();
+  save();toast("Entry deleted",()=>{S.tx.push(t);save();});
+}
 function txRow(t){
-  return h("div",{class:"item"},
-    h("div",{class:"grow"},h("div",null,t.cat+(t.note?" · "+t.note:"")),h("small",null,t.date+(t.acct?" · "+t.acct:"")+(t.trip&&tripOf(t.trip)?" · Dinas: "+tripOf(t.trip).name+(isClaim(t)?" (charged to office)":isAdv(t)?" (advance)":""):""))),
-    h("b",{class:t.type==="income"?"inc":"exp"},(t.type==="income"?"+":"-")+idr(t.amt)),
-    h("button",{class:"del",onclick:()=>{tomb(t.id);S.tx=S.tx.filter(x=>x.id!==t.id);save();}},"✕"));
+  return h("div",{class:"item tap",onclick:()=>startEdit(t)},
+    h("div",{class:"grow"},h("div",null,ct(t.cat)+(t.note?" · "+t.note:"")),h("small",null,t.date+(t.acct?" · "+t.acct:"")+(t.trip&&tripOf(t.trip)?" · "+T("Dinas: ")+tripOf(t.trip).name+(isClaim(t)?T(" (charged to office)"):isAdv(t)?T(" (advance)"):""):""))),
+    h("b",{class:t.type==="income"?"inc":"exp"},(t.type==="income"?"+":"-")+idr(t.amt)));
 }
 
 /* ---------- views ---------- */
@@ -193,72 +311,88 @@ function viewHome(){
   const byCat={};list.filter(t=>t.type==="expense").forEach(t=>byCat[t.cat]=(byCat[t.cat]||0)+t.amt);
   const cats=Object.keys(byCat).sort((a,b)=>byCat[b]-byCat[a]);
   return h("div",null,monthNav(),
-    h("div",{class:"sum"},
-      h("div",null,h("small",null,"Income"),h("b",{class:"inc"},idr(i))),
-      h("div",null,h("small",null,"Spent"),h("b",{class:"exp"},idr(e))),
-      h("div",null,h("small",null,"Left"),h("b",{class:bal<0?"exp":""},idr(bal)))),
+    h("div",{class:"hero"},h("small",null,"Left this month"),h("div",{class:"big"+(bal<0?" neg":"")},idr(bal)),
+      h("div",{class:"two"},h("div",null,h("small",null,"Income"),h("b",null,idr(i))),h("div",null,h("small",null,"Spent"),h("b",null,idr(e))))),
     cardBlock(list0),
-    office>0?h("div",{class:"card"},h("div",{class:"row"},h("b",{class:"grow"},"Charged to office this month"),h("b",null,idr(office))),h("small",{style:"color:var(--mute)"},"Not counted in your spending. See the Dinas tab.")):null,
-    totalOwed()>0?h("div",{class:"card"},h("div",{class:"row"},h("b",{class:"grow"},"Friends owe you"),h("b",null,idr(totalOwed()))),h("small",{style:"color:var(--mute)"},"Not counted in your spending. See Add → Lent.")):null,
+    (function(){const due=recItems(ym).filter(x=>!x.paid&&!x.skip);if(!due.length)return null;
+      return h("div",{class:"card"},h("div",{class:"row",style:"margin-bottom:6px"},h("b",{class:"grow"},"Due this month"),h("button",{class:"small ghost",onclick:()=>{tab="plan";planTab="recurring";render();window.scrollTo(0,0);}},"See all")),
+        due.slice(0,4).map(x=>h("div",{class:"item"},h("div",{class:"grow"},h("div",null,x.r.name),h("small",null,x.due)),h("b",null,idr(x.r.amt)),h("button",{class:"small",onclick:()=>payRec(x.r,ym,x.due)},"Pay"))));})(),
+    office>0?h("div",{class:"card"},h("div",{class:"row"},h("b",{class:"grow"},"Charged to office"),h("b",null,idr(office))),h("small",null,"Not counted in your spending.")):null,
+    totalOwed()>0?h("div",{class:"card"},h("div",{class:"row"},h("b",{class:"grow"},"Friends owe you"),h("b",null,idr(totalOwed()))),h("small",null,"Not counted in your spending.")):null,
     h("h2",null,"Spending vs budget"),
     h("div",{class:"card"},
       cats.length?cats.map(c=>{
         const b=S.budgets[c]||0, pct=b?Math.min(100,byCat[c]/b*100):100;
         const cls=b&&byCat[c]>b?"over":(b&&byCat[c]>b*0.8?"near":"");
-        return h("div",{style:"margin-bottom:12px"},
-          h("div",{class:"row"},h("span",{class:"grow"},c),h("small",null,idr(byCat[c])+(b?" / "+idr(b):" (no budget)"))),
+        return h("div",{style:"margin-bottom:16px"},
+          h("div",{class:"row"},h("span",{class:"grow"},ct(c)),h("small",null,idr(byCat[c])+(b?" / "+idr(b):""))),
           h("div",{class:"bar"},h("i",{class:cls,style:"width:"+pct+"%"})));
       }):h("div",{class:"empty"},"No spending yet this month.")),
     h("h2",null,"Latest"),
     h("div",{class:"card"},list0.length?list0.slice(0,5).map(txRow):h("div",{class:"empty"},"Nothing logged. Tap Add.")));
 }
-let lastAcct="Bank BCA";let draft={amt:"",cat:"",date:"",note:"",acct:"",cOn:false,cMonths:"6",cMonthly:"",person:""}, scanMsg="", scanning=false, sampleFn=null, canScan=false;
+let lastAcct="", draft={}, scanMsg="", scanning=false, sampleFn=null, canScan=false;
+resetDraft();
 function catsFor(type){
   const base=type==="expense"?EXP_CATS:INC_CATS;
   const extra=[...new Set(S.tx.filter(t=>t.type===type).map(t=>t.cat))].filter(c=>!base.includes(c)).sort();
   return base.concat(extra);
 }
+async function initScan(){}
+async function scanReceipt(){}
+const fld=(label,el)=>h("div",null,h("label",{class:"lb"},label),el);
 function viewAdd(){
-  const cats=catsFor(addType);
+  const editing=edit?S.tx.find(x=>x.id===edit.id):null;
+  if(edit&&!editing){edit=null;resetDraft();}
+  if(editing&&addType==="lent")addType="expense";
+  const cats=catsFor(addType==="lent"?"expense":addType);
   const today=new Date().toISOString().slice(0,10);
-  const amt=h("input",{type:"number",inputmode:"numeric",placeholder:"Amount (Rp)",min:"0",value:draft.amt});
-  const cat=h("select",null,cats.map(c=>h("option",{value:c},c)));
+  const amt=h("input",{type:"number",inputmode:"numeric",placeholder:"0",min:"0",value:draft.amt,class:"amt"});
+  const cat=h("select",null,cats.map(c=>h("option",{value:c},ct(c))));
   cat.value=cats.includes(draft.cat)?draft.cat:cats[0];
   const date=h("input",{type:"date",value:draft.date||today});
-  const note=h("input",{type:"text",placeholder:"Note (optional)",value:draft.note});
+  const note=h("input",{type:"text",placeholder:"Optional",value:draft.note});
   amt.addEventListener("input",()=>draft.amt=amt.value);
   cat.addEventListener("change",()=>draft.cat=cat.value);
   date.addEventListener("change",()=>draft.date=date.value);
   note.addEventListener("input",()=>draft.note=note.value);
-  const person=h("input",{type:"text",placeholder:"Who did you pay for? (e.g. Elsa)",value:draft.person||""});
+  const person=h("input",{type:"text",placeholder:"e.g. Elsa",value:draft.person||""});
   person.addEventListener("input",()=>draft.person=person.value);
-  const openTrips=(S.trips||[]).filter(t=>!t.done);
+  const openTrips=(S.trips||[]).filter(t=>!t.done||(editing&&editing.trip===t.id));
   const tripDefault=draft.trip!==undefined?draft.trip:(lastTrip&&openTrips.some(x=>x.id===lastTrip)?lastTrip:((openTrips.find(x=>x.start&&x.end&&x.start<=today&&today<=x.end)||{}).id||""));
-  const tripSel=h("select",null,h("option",{value:""},"Not a business trip"),openTrips.map(t=>h("option",{value:t.id},"Dinas: "+t.name)));
+  const tripSel=h("select",null,h("option",{value:""},"Not a business trip"),openTrips.map(t=>h("option",{value:t.id},T("Dinas: ")+t.name)));
   tripSel.value=openTrips.some(x=>x.id===tripDefault)?tripDefault:"";
   tripSel.addEventListener("change",()=>{draft.trip=tripSel.value;});
-  const acct=h("select",null,ACCTS.map(c=>h("option",{value:c},c)));
-  acct.value=ACCTS.includes(draft.acct)?draft.acct:lastAcct;
+  const wn=walletNames(draft.acct||(editing&&editing.acct)||"");
+  const acct=h("select",null,wn.map(c=>h("option",{value:c},c)));
+  acct.value=wn.includes(draft.acct)?draft.acct:(wn.includes(lastAcct)?lastAcct:(wn[0]||""));
   draft.acct=acct.value;
   acct.addEventListener("change",()=>{draft.acct=acct.value;if(!isCard(acct.value))draft.cOn=false;render();});
-  const cOn=h("input",{type:"checkbox",style:"width:auto;margin:0 8px 0 0"});cOn.checked=!!draft.cOn;
+  const cOn=h("input",{type:"checkbox"});cOn.checked=!!draft.cOn;
   cOn.addEventListener("change",()=>{draft.cOn=cOn.checked;render();});
   const cMonths=h("input",{type:"number",inputmode:"numeric",min:"2",placeholder:"Months",value:draft.cMonths});
-  const cMonthly=h("input",{type:"number",inputmode:"numeric",min:"0",placeholder:"Monthly payment incl. fee (blank = amount ÷ months)",value:draft.cMonthly});
+  const cMonthly=h("input",{type:"number",inputmode:"numeric",min:"0",placeholder:"Monthly payment (blank = amount ÷ months)",value:draft.cMonthly});
   cMonths.addEventListener("input",()=>draft.cMonths=cMonths.value);
   cMonthly.addEventListener("input",()=>draft.cMonthly=cMonthly.value);
-  const add=()=>{
+  const doSave=()=>{
     const a=Number(amt.value);
     if(!(a>0)){toast("Enter an amount above 0");return;}
     const d=date.value||today;
+    if(editing){
+      editing.type=addType;editing.amt=a;editing.date=d;editing.cat=cat.value;editing.note=note.value.trim();
+      if(acct.value)editing.acct=acct.value;else delete editing.acct;
+      if(addType==="expense"){delete editing.adv;if(tripSel.value)editing.trip=tripSel.value;else{delete editing.trip;delete editing.claim;}}
+      else if(!editing.adv){delete editing.trip;delete editing.claim;}
+      ym=d.slice(0,7);endEdit();save();toast("Changes saved");return;
+    }
     if(addType==="lent"){
       const who=(draft.person||"").trim();
       if(!who){toast("Enter who you paid for");return;}
-      S.loans=(S.loans||[]).concat([{id:uid(),person:who,amt:a,date:d,note:note.value.trim(),acct:acct.value,paid:0}]);
-      draft={amt:"",cat:"",date:"",note:"",acct:"",cOn:false,cMonths:"6",cMonthly:"",person:""};
-      save();toast("Saved. Not counted in your spending");return;
+      S.loans=(S.loans||[]).concat([{id:uid(),person:who,amt:a,date:d,note:note.value.trim(),acct:acct.value||undefined,paid:0}]);
+      resetDraft();save();toast("Saved. Not counted in your spending");return;
     }
-    const t={id:uid(),date:d,type:addType,cat:cat.value,amt:a,note:note.value.trim(),acct:acct.value};
+    const t={id:uid(),date:d,type:addType,cat:cat.value,amt:a,note:note.value.trim()};
+    if(acct.value)t.acct=acct.value;
     if(addType==="expense"&&tripSel.value)t.trip=tripSel.value;
     lastTrip=tripSel.value;
     S.tx.push(t);
@@ -270,26 +404,36 @@ function viewAdd(){
         S.cicilan.push({id:uid(),name:(t.note||t.cat),monthly,months:n,first:miToYm(mi(d.slice(0,7))+1)});
       }
     }
-    lastAcct=acct.value;
-    ym=d.slice(0,7)||ym;
-    draft={amt:"",cat:"",date:"",note:"",acct:"",cOn:false,cMonths:"6",cMonthly:"",person:""};scanMsg="";
+    lastAcct=acct.value;ym=d.slice(0,7)||ym;
+    resetDraft();scanMsg="";
     save();toast("Saved");
   };
+  const file=h("input",{type:"file",accept:"image/*",capture:"environment",style:"display:none"});
+  file.addEventListener("change",()=>{const f=file.files[0];file.value="";if(f)scanReceipt(f);});
+  const seg=editing?[["expense","Expense","e"],["income","Income","i"]]:[["expense","Expense","e"],["income","Income","i"],["lent","Lent","l"]];
   return h("div",null,
-    null,
+    h("h1",null,editing?"Edit entry":"Add"),
+    (canScan&&!editing)?h("div",{class:"card"},
+      h("button",{class:"ghost full",disabled:scanning?"disabled":null,onclick:()=>file.click()},scanning?"Reading...":"📷  Scan receipt"),
+      file,scanMsg?h("p",{style:"color:var(--mute);margin:10px 0 0;font-size:15px"},scanMsg):null):null,
     h("div",{class:"card"},
-      h("div",{class:"seg"},
-        h("button",{class:"e"+(addType==="expense"?" on":""),onclick:()=>{addType="expense";draft.cat="";render();}},"Expense"),
-        h("button",{class:"i"+(addType==="income"?" on":""),onclick:()=>{addType="income";draft.cat="";render();}},"Income"),
-        h("button",{class:"l"+(addType==="lent"?" on":""),onclick:()=>{addType="lent";draft.cat="";render();}},"Lent")),
-      addType==="lent"?person:null,
-      amt,addType==="lent"?null:cat,acct,(addType==="expense"&&openTrips.length)?tripSel:null,date,note,
-      (addType==="expense"&&isCard(acct.value))?h("div",{style:"margin-bottom:8px"},
-        h("label",{class:"row",style:"margin-bottom:8px"},cOn,"Convert to cicilan"),
-        draft.cOn?h("div",null,cMonths,cMonthly,h("small",{style:"color:var(--mute)"},"The purchase counts in full today. Monthly payments start next month and are tracked on the Cicilan tab.")):null):null,
-      h("button",{style:"width:100%",onclick:add},"Add")),
-    addType==="lent"?loansBlock():monthNav(),
-    addType==="lent"?null:h("div",{class:"card"},monthTx().length?monthTx().map(txRow):h("div",{class:"empty"},"No entries this month.")));
+      h("div",{class:"seg"},seg.map(([k,l,c])=>h("button",{class:c+(addType===k?" on":""),onclick:()=>{addType=k;draft.cat="";render();}},l))),
+      addType==="lent"?fld("Who did you pay for?",person):null,
+      fld("Amount (Rp)",amt),
+      addType==="lent"?null:fld("Category",cat),
+      fld("Wallet",acct),
+      (addType==="expense"&&openTrips.length)?fld("Business trip",tripSel):null,
+      fld("Date",date),
+      fld("Note",note),
+      (addType==="expense"&&isCard(acct.value)&&!editing)?h("div",{style:"margin-bottom:14px"},
+        h("label",{class:"chk"},cOn,"Convert to cicilan"),
+        draft.cOn?h("div",null,fld("Months",cMonths),fld("Monthly payment",cMonthly),h("small",null,"The purchase counts in full today. Monthly payments start next month (Plan → Cicilan).")):null):null,
+      h("button",{class:"full",onclick:doSave},editing?"Save changes":"Save"),
+      editing?h("div",{class:"row",style:"margin-top:10px"},
+        h("button",{class:"ghost grow",onclick:()=>{endEdit();render();}},"Cancel"),
+        h("button",{class:"del",onclick:()=>delTx(editing)},"Delete entry")):null),
+    editing?null:(addType==="lent"?loansBlock():monthNav()),
+    editing?null:(addType==="lent"?null:h("div",{class:"card"},monthTx().length?monthTx().map(txRow):h("div",{class:"empty"},"No entries this month."))));
 }
 const owed=l=>Math.max(0,l.amt-(l.paid||0));
 const totalOwed=()=>(S.loans||[]).reduce((a,l)=>a+owed(l),0);
@@ -298,89 +442,204 @@ function loansBlock(){
   const per={};list.forEach(l=>{if(owed(l)>0)per[l.person]=(per[l.person]||0)+owed(l);});
   const who=Object.keys(per).sort((a,b)=>per[b]-per[a]);
   return h("div",null,
-    h("div",{class:"card"},h("b",null,"Owed to you: "+idr(totalOwed())),
+    h("div",{class:"card"},h("b",null,T("Owed to you: {0}",idr(totalOwed()))),
       who.length?who.map(w=>h("div",{class:"row",style:"margin-top:6px"},h("span",{class:"grow"},w),h("span",null,idr(per[w])))):h("div",{class:"empty"},"Nobody owes you.")),
     list.map(l=>{
       const inp=h("input",{type:"number",inputmode:"numeric",placeholder:"Received (Rp)",style:"margin:0"});
       const left=owed(l);
       return h("div",{class:"card",style:left>0?"":"opacity:.6"},
-        h("div",{class:"row"},h("b",{class:"grow"},l.person+(l.note?" · "+l.note:"")),h("button",{class:"del",onclick:()=>{tomb(l.id);S.loans=S.loans.filter(x=>x.id!==l.id);save();}},"✕")),
-        h("small",null,l.date+(l.acct?" · "+l.acct:"")+" · "+idr(l.amt)+" paid by you · "+(left>0?idr(left)+" still owed":"settled")),
+        h("div",{class:"row"},h("b",{class:"grow"},l.person+(l.note?" · "+l.note:"")),h("button",{class:"del",onclick:()=>{S.loans=S.loans.filter(x=>x.id!==l.id);save();}},"✕")),
+        h("small",null,l.date+(l.acct?" · "+l.acct:"")+" · "+T("{0} paid by you",idr(l.amt))+" · "+(left>0?T("{0} still owed",idr(left)):T("settled"))),
         left>0?h("div",{class:"row",style:"margin-top:8px"},inp,
           h("button",{class:"small",onclick:()=>{const v=Number(inp.value);if(!(v>0))return;l.paid=Math.min(l.amt,(l.paid||0)+v);save();}},"Add"),
           h("button",{class:"small ghost",onclick:()=>{l.paid=l.amt;save();}},"Paid in full")):null);
     }));
 }
+function planSeg(){
+  return h("div",{class:"seg"},[["budget","Budget"],["recurring","Recurring"],["goals","Goals"],["cicilan","Cicilan"]].map(([k,l])=>h("button",{class:planTab===k?"on":"",onclick:()=>{planTab=k;budDraft=null;render();}},l)));
+}
+function viewPlan(){return h("div",null,h("h1",null,"Plan"),planSeg(),planTab==="budget"?viewBudget():planTab==="recurring"?viewRecurring():planTab==="goals"?viewGoals():viewCicilan());}
 function viewBudget(){
-  const bTotal=Object.values(S.budgets).reduce((a,b)=>a+b,0);
+  if(!budDraft)budDraft=Object.assign({},S.budgets);
   const sTotal=S.goals.reduce((a,g)=>a+(g.monthly||0),0);
   const cNow=cicilanFor(nowYm());
-  const plan=bTotal+sTotal+cNow;
+  const bEl=h("b",null),pEl=h("b",null);
   const incInp=h("input",{type:"number",inputmode:"numeric",placeholder:"e.g. salary",value:S.income||"",style:"margin:0"});
-  incInp.addEventListener("change",()=>{const v=Number(incInp.value);S.income=v>0?v:undefined;save();});
-  return h("div",null,h("h1",null,"Monthly budget"),
+  const upd=()=>{const bt=Object.values(budDraft).reduce((a,b)=>a+b,0);bEl.textContent=idr(bt);const plan=bt+sTotal+cNow;pEl.textContent=idr(plan);const inc=Number(incInp.value)||0;pEl.className=(inc>0&&plan>inc)?"exp":"inc";};
+  incInp.addEventListener("input",()=>upd());
+  upd();
+  return h("div",null,
     h("div",{class:"card"},
-      h("div",{class:"row"},h("span",{class:"grow"},"Budgets"),h("b",null,idr(bTotal))),
-      h("div",{class:"row"},h("span",{class:"grow"},"Monthly savings goals"),h("b",null,idr(sTotal))),
-      h("div",{class:"row"},h("span",{class:"grow"},"Cicilan due this month"),h("b",null,idr(cNow))),
-      h("div",{class:"row"},h("span",{class:"grow"},"Planned total"),h("b",{class:(S.income>0&&plan>S.income)?"exp":"inc"},idr(plan))),
-      h("div",{class:"row",style:"margin-top:8px"},h("span",{style:"width:150px"},"Monthly income"),incInp)),
-    h("p",{style:"color:var(--mute);margin-top:0"},"Set a limit per category. Leave empty for none."),
+      h("div",{class:"row",style:"margin-bottom:6px"},h("span",{class:"grow"},"Budgets"),bEl),
+      h("div",{class:"row",style:"margin-bottom:6px"},h("span",{class:"grow"},"Monthly savings goals"),h("b",null,idr(sTotal))),
+      h("div",{class:"row",style:"margin-bottom:6px"},h("span",{class:"grow"},"Cicilan this month"),h("b",null,idr(cNow))),
+      h("div",{class:"row"},h("span",{class:"grow"},"Planned total"),pEl),
+      h("div",{class:"row",style:"margin-top:10px"},h("span",{style:"width:150px"},"Monthly income"),incInp)),
     h("div",{class:"card"},EXP_CATS.map(c=>{
-      const inp=h("input",{type:"number",inputmode:"numeric",placeholder:"No limit",value:S.budgets[c]||"",style:"margin:0"});
-      inp.addEventListener("change",()=>{const v=Number(inp.value);if(v>0)S.budgets[c]=v;else delete S.budgets[c];save();});
-      return h("div",{class:"row",style:"margin-bottom:8px"},h("span",{style:"width:120px"},c),inp);
-    })));
+      const inp=h("input",{type:"number",inputmode:"numeric",placeholder:"No limit",value:budDraft[c]||"",style:"margin:0"});
+      inp.addEventListener("input",()=>{const v=Number(inp.value);if(v>0)budDraft[c]=v;else delete budDraft[c];upd();});
+      return h("div",{class:"row",style:"margin-bottom:10px"},h("span",{style:"width:130px;font-size:16px"},ct(c)),inp);
+    })),
+    h("button",{class:"full",onclick:()=>{S.budgets=Object.assign({},budDraft);const v=Number(incInp.value);S.income=v>0?v:undefined;budDraft=null;save();toast("Budget saved");}},"Save budget")
+  );
 }
 function viewGoals(){
-  const name=h("input",{type:"text",placeholder:"Goal name (e.g. Laptop)"});
-  const target=h("input",{type:"number",inputmode:"numeric",placeholder:"Target (Rp)"});
-  return h("div",null,h("h1",null,"Savings goals"),
-    h("div",{class:"card"},name,target,h("button",{style:"width:100%",onclick:()=>{
+  const name=h("input",{type:"text",placeholder:"e.g. Laptop"});
+  const target=h("input",{type:"number",inputmode:"numeric",placeholder:"Rp"});
+  return h("div",null,
+    h("div",{class:"card"},fld("Goal name",name),fld("Target",target),h("button",{class:"full",onclick:()=>{
       const t=Number(target.value);if(!name.value.trim()||!(t>0)){toast("Enter a name and target");return;}
-      S.goals.push({id:uid(),name:name.value.trim(),target:t,saved:0});save();}},"Add goal")),
+      S.goals.push({id:uid(),name:name.value.trim(),target:t,saved:0});save();toast("Goal saved");}},"Save goal")),
     S.goals.length?S.goals.map(g=>{
       const pct=Math.min(100,g.saved/g.target*100);
       const add=h("input",{type:"number",inputmode:"numeric",placeholder:"Add savings",style:"margin:0"});
       return h("div",{class:"card"},
-        h("div",{class:"row"},h("b",{class:"grow"},g.name),h("button",{class:"del",onclick:()=>{tomb(g.id);S.goals=S.goals.filter(x=>x.id!==g.id);save();}},"✕")),
-        h("small",null,idr(g.saved)+" of "+idr(g.target)+" ("+Math.round(pct)+"%)"+(g.monthly?" · save "+idr(g.monthly)+"/month":"")),
+        h("div",{class:"row"},h("b",{class:"grow"},g.name),h("button",{class:"del",onclick:()=>ask({title:"Delete goal?",body:T("\"{0}\" and its saved amount will be removed.",g.name),ok:"Delete goal",onOk:()=>{S.goals=S.goals.filter(x=>x.id!==g.id);save();}})},"Delete")),
+        h("small",null,T("{0} of {1}",idr(g.saved),idr(g.target))+" ("+Math.round(pct)+"%)"+(g.monthly?" · "+T("save {0}/month",idr(g.monthly)):"")),
         h("div",{class:"bar"},h("i",{style:"width:"+pct+"%"})),
-        h("div",{class:"row",style:"margin-top:10px"},add,h("button",{class:"small",onclick:()=>{const v=Number(add.value);if(!(v>0))return;g.saved+=v;save();}},"Add")));
+        h("div",{class:"row",style:"margin-top:12px"},add,h("button",{class:"small",onclick:()=>{const v=Number(add.value);if(!(v>0))return;g.saved+=v;save();}},"Add")));
     }):h("div",{class:"empty"},"No goals yet."));
 }
-
 function viewCicilan(){
   const list=S.cicilan||[];
-  const name=h("input",{type:"text",placeholder:"Name (e.g. Laptop)"});
-  const monthly=h("input",{type:"number",inputmode:"numeric",placeholder:"Monthly payment (Rp)"});
-  const months=h("input",{type:"number",inputmode:"numeric",placeholder:"Total months"});
+  const name=h("input",{type:"text",placeholder:"e.g. Laptop"});
+  const monthly=h("input",{type:"number",inputmode:"numeric",placeholder:"Rp"});
+  const months=h("input",{type:"number",inputmode:"numeric",placeholder:"e.g. 6"});
   const first=h("input",{type:"month",value:nowYm()});
   const fc=[];
   for(let k=0;k<12;k++){const M=miToYm(mi(nowYm())+k);fc.push([M,cicilanFor(M)]);}
-  const lastActive=fc.filter(x=>x[1]>0).pop();
-  return h("div",null,h("h1",null,"Cicilan"),
+  return h("div",null,
     h("div",{class:"sum"},
-      h("div",null,h("small",null,"Due this month"),h("b",null,idr(cicilanFor(nowYm())))),
+      h("div",null,h("small",null,"This month"),h("b",null,idr(cicilanFor(nowYm())))),
       h("div",null,h("small",null,"Active"),h("b",null,String(list.filter(c=>cPaid(c)<c.months).length))),
       h("div",null,h("small",null,"Still to pay"),h("b",null,idr(list.reduce((a,c)=>a+(c.months-cPaid(c))*c.monthly,0))))),
     h("div",{class:"card"},h("b",null,"Next 12 months"),
-      lastActive?fc.filter(x=>x[1]>0).map(x=>h("div",{class:"row",style:"margin-top:6px"},h("span",{class:"grow"},x[0]),h("span",null,idr(x[1])))):h("div",{class:"empty"},"No cicilan due.")),
-    h("div",{class:"card"},h("b",null,"Add cicilan"),
-      h("div",{style:"height:8px"}),name,monthly,months,
-      h("small",{style:"color:var(--mute)"},"First payment month"),first,
-      h("button",{style:"width:100%",onclick:()=>{
+      fc.some(x=>x[1]>0)?fc.filter(x=>x[1]>0).map(x=>h("div",{class:"row",style:"margin-top:8px"},h("span",{class:"grow"},x[0]),h("span",null,idr(x[1])))):h("div",{class:"empty"},"No cicilan due.")),
+    h("div",{class:"card"},h("b",null,"New cicilan"),h("div",{style:"height:12px"}),
+      fld("Name",name),fld("Monthly payment",monthly),fld("Total months",months),fld("First payment month",first),
+      h("button",{class:"full",onclick:()=>{
         const m=Number(monthly.value),n=Math.round(Number(months.value));
         if(!name.value.trim()||!(m>0)||!(n>=1)||!first.value){toast("Fill in name, monthly amount, months and start");return;}
-        S.cicilan=list.concat([{id:uid(),name:name.value.trim(),monthly:Math.round(m),months:n,first:first.value}]);save();}},"Add")),
+        S.cicilan=list.concat([{id:uid(),name:name.value.trim(),monthly:Math.round(m),months:n,first:first.value}]);save();toast("Cicilan saved");}},"Save cicilan")),
     list.length?list.map(c=>{
       const paid=cPaid(c),pct=Math.min(100,paid/c.months*100);
       const ends=miToYm(mi(c.first)+c.months-1);
       return h("div",{class:"card"},
-        h("div",{class:"row"},h("b",{class:"grow"},c.name),h("button",{class:"del",onclick:()=>{tomb(c.id);S.cicilan=list.filter(x=>x.id!==c.id);save();}},"✕")),
-        h("small",null,idr(c.monthly)+"/month · "+paid+" of "+c.months+" paid · ends "+ends+" · "+idr((c.months-paid)*c.monthly)+" left"),
+        h("div",{class:"row"},h("b",{class:"grow"},c.name),h("button",{class:"del",onclick:()=>ask({title:"Delete cicilan?",body:T("\"{0}\" will be removed from your monthly commitments.",c.name),ok:"Delete cicilan",onOk:()=>{S.cicilan=(S.cicilan||[]).filter(x=>x.id!==c.id);save();}})},"Delete")),
+        h("small",null,T("{0}/month · {1} of {2} paid · ends {3} · {4} left",idr(c.monthly),paid,c.months,ends,idr((c.months-paid)*c.monthly))),
         h("div",{class:"bar"},h("i",{style:"width:"+pct+"%"})));
     }):h("div",{class:"card"},h("div",{class:"empty"},"No cicilan yet.")));
+}
+
+/* ---------- recurring ---------- */
+const locOf=()=>lang==="id"?"id-ID":lang==="zh"?"zh-CN":"en-US";
+const daysIn=(y,m)=>new Date(y,m,0).getDate();
+function recDue(r,M){
+  if(r.until&&M>r.until)return null;
+  if(M<(r.start||"0000-00"))return null;
+  const [y,m]=M.split("-").map(Number);
+  if(r.freq==="yearly"&&Number(r.month)!==m)return null;
+  return M+"-"+String(Math.min(Number(r.day)||1,daysIn(y,m))).padStart(2,"0");
+}
+const recPaid=(r,M)=>S.tx.find(t=>t.rec===r.id&&t.recKey===M);
+const recSkipped=(r,M)=>(r.skip||[]).indexOf(M)>=0;
+function recItems(M){
+  return (S.recurring||[]).map(r=>({r,due:recDue(r,M)})).filter(x=>x.due)
+    .map(x=>Object.assign(x,{paid:recPaid(x.r,M),skip:recSkipped(x.r,M)}))
+    .sort((a,b)=>a.due.localeCompare(b.due));
+}
+function payRec(r,M,due){
+  ask({title:T("Pay {0}?",r.name),body:T("Due {0}. Change the amount if this month's bill is different.",due),field:{value:String(r.amt),numeric:true},ok:"Pay",danger:false,onOk:v=>{
+    const a=Number(String(v).replace(/[^\d]/g,""));
+    if(!(a>0)){toast("Enter an amount above 0");return false;}
+    const t={id:uid(),date:due,type:"expense",cat:r.cat,amt:a,note:r.name,rec:r.id,recKey:M};
+    if(r.acct)t.acct=r.acct;
+    S.tx.push(t);save();toast("Paid and recorded");}});
+}
+function freqText(r){
+  if(r.freq==="yearly")return T("Yearly · {0} {1}",r.day,new Date(2000,(Number(r.month)||1)-1,1).toLocaleDateString(locOf(),{month:"long"}));
+  return T("Monthly · day {0}",r.day);
+}
+let recEdit=null,recDraft=null;
+const newRecDraft=()=>({name:"",amt:"",cat:"",acct:"",freq:"monthly",day:"",month:String(new Date().getMonth()+1),start:nowYm()});
+function viewRecurring(){
+  if(!recDraft)recDraft=newRecDraft();
+  const dr=recDraft;
+  const items=recItems(ym);
+  const live=items.filter(x=>!x.skip);
+  const total=live.reduce((a,x)=>a+(x.paid?x.paid.amt:x.r.amt),0);
+  const paidSum=live.reduce((a,x)=>a+(x.paid?x.paid.amt:0),0);
+  const byCat={};live.forEach(x=>{byCat[x.r.cat]=(byCat[x.r.cat]||0)+x.r.amt;});
+  const cats=Object.keys(byCat).sort((a,b)=>byCat[b]-byCat[a]);
+  const catList=catsFor("expense");
+  const name=h("input",{type:"text",placeholder:"e.g. Netflix, PLN",value:dr.name});
+  const amt=h("input",{type:"number",inputmode:"numeric",placeholder:"0",value:dr.amt});
+  const cat=h("select",null,catList.map(c=>h("option",{value:c},ct(c))));cat.value=catList.includes(dr.cat)?dr.cat:catList[0];dr.cat=cat.value;
+  const wn=walletNames(dr.acct);
+  const acct=h("select",null,h("option",{value:""},"—"),wn.map(c=>h("option",{value:c},c)));acct.value=wn.includes(dr.acct)?dr.acct:"";
+  const freq=h("select",null,h("option",{value:"monthly"},"Monthly"),h("option",{value:"yearly"},"Yearly"));freq.value=dr.freq;
+  const day=h("input",{type:"number",inputmode:"numeric",min:"1",max:"31",placeholder:"1-31",value:dr.day});
+  const mon=h("select",null,[0,1,2,3,4,5,6,7,8,9,10,11].map(i=>h("option",{value:String(i+1)},new Date(2000,i,1).toLocaleDateString(locOf(),{month:"long"}))));mon.value=dr.month;
+  const start=h("input",{type:"month",value:dr.start});
+  name.addEventListener("input",()=>dr.name=name.value);
+  amt.addEventListener("input",()=>dr.amt=amt.value);
+  cat.addEventListener("change",()=>dr.cat=cat.value);
+  acct.addEventListener("change",()=>dr.acct=acct.value);
+  freq.addEventListener("change",()=>{dr.freq=freq.value;render();});
+  day.addEventListener("input",()=>dr.day=day.value);
+  mon.addEventListener("change",()=>dr.month=mon.value);
+  start.addEventListener("change",()=>dr.start=start.value);
+  const doSave=()=>{
+    const a=Math.round(Number(amt.value)),d=Math.round(Number(day.value));
+    if(!name.value.trim()||!(a>0)||!(d>=1&&d<=31)){toast("Enter a name, amount and due day");return;}
+    const f={name:name.value.trim(),amt:a,cat:cat.value,acct:acct.value||undefined,freq:freq.value,day:d,month:Number(mon.value),start:start.value||nowYm()};
+    S.recurring=S.recurring||[];
+    if(recEdit){const r=S.recurring.find(x=>x.id===recEdit);if(r){Object.assign(r,f);if(!f.acct)delete r.acct;}}
+    else S.recurring.push(Object.assign({id:uid()},f));
+    recEdit=null;recDraft=null;save();toast("Recurring saved");
+  };
+  return h("div",null,
+    monthNav(),
+    h("div",{class:"sum"},
+      h("div",null,h("small",null,"Fixed this month"),h("b",null,idr(total))),
+      h("div",null,h("small",null,"Paid"),h("b",{class:"inc"},idr(paidSum))),
+      h("div",null,h("small",null,"To pay"),h("b",{class:"exp"},idr(total-paidSum)))),
+    items.length?items.map(x=>{
+      const r=x.r,st=x.paid?"paid":x.skip?"skip":"due";
+      const overdue=st==="due"&&x.due<new Date().toISOString().slice(0,10);
+      return h("div",{class:"card",style:st!=="due"?"opacity:.7":""},
+        h("div",{class:"row"},h("b",{class:"grow"},r.name),h("b",null,idr(x.paid?x.paid.amt:r.amt))),
+        h("small",{style:overdue?"color:var(--exp)":""},T("Due {0}",x.due)+(r.acct?" · "+r.acct:"")+" · "+ct(r.cat)),
+        st==="due"?h("div",{class:"row",style:"margin-top:12px"},
+          h("button",{class:"grow",onclick:()=>payRec(r,ym,x.due)},"Pay"),
+          h("button",{class:"ghost",onclick:()=>{r.skip=(r.skip||[]).concat([ym]);save();}},"Skip")):
+        h("div",{class:"row",style:"margin-top:10px"},h("span",{class:"tag"+(st==="skip"?" off":"")},st==="paid"?"Paid":"Skipped"),
+          st==="skip"?h("button",{class:"small ghost",onclick:()=>{r.skip=(r.skip||[]).filter(m=>m!==ym);save();}},"Unskip"):null));
+    }):h("div",{class:"card"},h("div",{class:"empty"},"Nothing fixed this month.")),
+    cats.length?h("div",{class:"card"},h("b",null,"Fixed vs budget"),h("div",{style:"height:10px"}),
+      cats.map(c=>{
+        const b=S.budgets[c]||0,pct=b?Math.min(100,byCat[c]/b*100):100;
+        return h("div",{style:"margin-bottom:14px"},
+          h("div",{class:"row"},h("span",{class:"grow"},ct(c)),h("small",{style:b&&byCat[c]>b?"color:var(--exp)":""},b?T("{0} of {1}",idr(byCat[c]),idr(b)):idr(byCat[c])+" · "+T("no budget"))),
+          h("div",{class:"bar"},h("i",{class:b&&byCat[c]>b?"over":"",style:"width:"+pct+"%"})));
+      }),h("small",null,"Paid items are normal entries, so they fill the category budget. Nothing is counted twice.")):null,
+    h("div",{class:"card"},h("b",null,recEdit?"Edit recurring":"New recurring"),h("div",{style:"height:12px"}),
+      fld("Name",name),fld("Amount (Rp)",amt),fld("Category",cat),fld("Wallet",acct),fld("Repeats",freq),
+      freq.value==="yearly"?fld("Due month",mon):null,
+      fld("Due day (1-31)",day),fld("Starts",start),
+      h("button",{class:"full",onclick:doSave},"Save recurring"),
+      recEdit?h("button",{class:"ghost full",style:"margin-top:10px",onclick:()=>{recEdit=null;recDraft=null;render();}},"Cancel"):null),
+    h("h2",null,"All recurring"),
+    h("div",{class:"card"},(S.recurring||[]).length?(S.recurring||[]).map(r=>{
+      const stopped=!!r.until&&r.until<nowYm();
+      return h("div",{class:"item",style:"display:block;"+(stopped?"opacity:.6":"")},
+        h("div",{class:"row"},h("b",{class:"grow"},r.name,stopped?h("span",{class:"tag off"},"Stopped"):null),h("b",null,idr(r.amt))),
+        h("small",null,freqText(r)+" · "+ct(r.cat)),
+        h("div",{class:"row",style:"margin-top:10px;flex-wrap:wrap"},
+          h("button",{class:"small ghost",onclick:()=>{recEdit=r.id;recDraft={name:r.name,amt:String(r.amt),cat:r.cat,acct:r.acct||"",freq:r.freq||"monthly",day:String(r.day),month:String(r.month||1),start:r.start||nowYm()};render();window.scrollTo(0,document.body.scrollHeight);}},"Edit"),
+          stopped?h("button",{class:"small ghost",onclick:()=>{delete r.until;save();}},"Resume"):h("button",{class:"small ghost",onclick:()=>{r.until=miToYm(mi(nowYm())-1);save();}},"Stop"),
+          h("button",{class:"small del",onclick:()=>ask({title:"Delete recurring?",body:T("\"{0}\" will be removed. Entries you already paid stay in your records.",r.name),ok:"Delete recurring",onOk:()=>{S.recurring=S.recurring.filter(x=>x.id!==r.id);save();}})},"Delete")));
+    }):h("div",{class:"empty"},"No recurring yet.")));
 }
 
 function shiftDay(d,n){const x=new Date(d+"T00:00:00Z");x.setUTCDate(x.getUTCDate()+n);return x.toISOString().slice(0,10);}
@@ -392,7 +651,7 @@ function pullTrip(tr){
     if(t.type==="expense"&&t.date>=tr.start&&t.date<=tr.end){t.trip=tr.id;n++;}
     else if(t.type==="income"&&/dinas/i.test(t.note||"")&&t.date>=sd&&t.date<=ed){t.trip=tr.id;t.adv=true;a++;}
   });
-  save();toast("Pulled "+n+" expenses"+(a?" and "+a+" advance":""));
+  save();toast(T("Pulled {0} expenses",n)+(a?T(" and {0} advance",a):""));
 }
 function claimRows(tr){return tripStats(tr).claim.slice().sort((x,y)=>x.date.localeCompare(y.date));}
 function claimTextFor(tr){
@@ -433,8 +692,8 @@ function viewTrips(){
       return h("div",{class:"card"},
         h("div",{class:"row"},h("b",{class:"grow"},tr.name),
           h("button",{class:"small ghost",onclick:()=>{openTrip=open?null:tr.id;claimText="";render();}},open?"Hide":"Open"),
-          h("button",{class:"del",onclick:()=>{S.tx.forEach(t=>{if(t.trip===tr.id){delete t.trip;delete t.claim;delete t.adv;}});tomb(tr.id);S.trips=trips.filter(x=>x.id!==tr.id);if(openTrip===tr.id)openTrip=null;save();}},"✕")),
-        h("small",null,(tr.start||"?")+" to "+(tr.end||"?")+(tr.done?" · closed":"")),
+          h("button",{class:"del",onclick:()=>ask({title:"Delete trip?",body:T("\"{0}\" is removed. Its entries stay in your records but are no longer linked to the trip.",tr.name),ok:"Delete trip",onOk:()=>{S.tx.forEach(t=>{if(t.trip===tr.id){delete t.trip;delete t.claim;delete t.adv;}});S.trips=(S.trips||[]).filter(x=>x.id!==tr.id);if(openTrip===tr.id)openTrip=null;save();}})},"Delete")),
+        h("small",null,T("{0} to {1}",tr.start||"?",tr.end||"?")+(tr.done?T(" · closed"):"")),
         h("div",{class:"row",style:"margin-top:8px"},h("span",{class:"grow"},"Advance received"),h("b",null,idr(st.adv))),
         h("div",{class:"row"},h("span",{class:"grow"},"Charged to office"),h("b",null,idr(st.c))),
         h("div",{class:"row"},h("span",{class:"grow"},"Paid by you (not charged)"),h("b",null,idr(st.o))),
@@ -451,7 +710,7 @@ function viewTrips(){
             cb.addEventListener("change",()=>{t.claim=cb.checked;save();});
             return h("div",{class:"item"},
               t.type==="income"?h("span",{style:"width:56px;font-size:12px;color:var(--inc)"},"Advance"):h("label",{style:"width:56px;font-size:12px"},cb," Charge"),
-              h("div",{class:"grow"},h("div",null,t.cat+(t.note?" · "+t.note:"")),h("small",null,t.date+(t.acct?" · "+t.acct:""))),
+              h("div",{class:"grow"},h("div",null,ct(t.cat)+(t.note?" · "+t.note:"")),h("small",null,t.date+(t.acct?" · "+t.acct:""))),
               h("b",{class:t.type==="income"?"inc":""},idr(t.amt)),
               h("button",{class:"del",onclick:()=>{delete t.trip;delete t.claim;delete t.adv;save();}},"✕"));
           })):null);
@@ -461,7 +720,7 @@ function viewTrips(){
       catsFor("expense").map(c=>{
         const cb=h("input",{type:"checkbox",style:"width:auto;margin:0"});cb.checked=noc.includes(c);
         cb.addEventListener("change",()=>{const cur=noClaimList().slice();S.noClaim=cb.checked?cur.concat([c]):cur.filter(x=>x!==c);save();});
-        return h("label",{class:"row",style:"margin-bottom:6px"},cb,c);
+        return h("label",{class:"row",style:"margin-bottom:6px"},cb,ct(c));
       })));
 }
 
@@ -493,19 +752,21 @@ function importText(name,text){
   try{
     if(name.toLowerCase().endsWith(".json")){
       const d=JSON.parse(text);let n=0;const have=new Set(S.tx.map(t=>t.id));
-      (d.tx||[]).forEach(t=>{if(t&&t.id&&!have.has(t.id)&&t.date&&t.amt>0){S.tx.push({id:t.id,date:String(t.date),type:t.type==="income"?"income":"expense",cat:String(t.cat||"Other"),amt:Number(t.amt),note:String(t.note||""),acct:t.acct?String(t.acct):undefined,trip:t.trip||undefined,claim:t.claim===undefined?undefined:!!t.claim,adv:t.adv?true:undefined});n++;}});
+      (d.tx||[]).forEach(t=>{if(t&&t.id&&!have.has(t.id)&&t.date&&t.amt>0){S.tx.push({id:t.id,date:String(t.date),type:t.type==="income"?"income":"expense",cat:String(t.cat||"Other"),amt:Number(t.amt),note:String(t.note||""),acct:t.acct?String(t.acct):undefined,trip:t.trip||undefined,claim:t.claim===undefined?undefined:!!t.claim,adv:t.adv?true:undefined,rec:t.rec||undefined,recKey:t.recKey||undefined});n++;}});
       const th=new Set((S.trips||[]).map(x=>x.id));S.trips=S.trips||[];
       (d.trips||[]).forEach(x=>{if(x&&x.id&&!th.has(x.id))S.trips.push({id:x.id,name:String(x.name||"Trip"),start:String(x.start||""),end:String(x.end||""),advance:Number(x.advance)||0,done:!!x.done});});
       if(d.noClaim&&!S.noClaim)S.noClaim=d.noClaim;
       if(d.income>0&&!S.income)S.income=Number(d.income);
       const lh=new Set((S.loans||[]).map(l=>l.id));S.loans=S.loans||[];
       (d.loans||[]).forEach(l=>{if(l&&l.id&&!lh.has(l.id)&&l.amt>0&&l.person)S.loans.push({id:l.id,person:String(l.person),amt:Number(l.amt),date:String(l.date||""),note:String(l.note||""),acct:l.acct?String(l.acct):undefined,paid:Number(l.paid)||0});});
+      const rh=new Set((S.recurring||[]).map(r=>r.id));S.recurring=S.recurring||[];
+      (d.recurring||[]).forEach(r=>{if(r&&r.id&&!rh.has(r.id)&&r.amt>0&&r.name)S.recurring.push({id:r.id,name:String(r.name),amt:Number(r.amt),cat:String(r.cat||"Other"),acct:r.acct?String(r.acct):undefined,freq:r.freq==="yearly"?"yearly":"monthly",day:Number(r.day)||1,month:Number(r.month)||1,start:String(r.start||""),until:r.until||undefined,skip:Array.isArray(r.skip)?r.skip:[]});});
       const ch=new Set((S.cicilan||[]).map(c=>c.id));S.cicilan=S.cicilan||[];
       (d.cicilan||[]).forEach(c=>{if(c&&c.id&&!ch.has(c.id)&&c.monthly>0&&c.months>=1&&/^\d{4}-\d{2}$/.test(String(c.first)))S.cicilan.push({id:c.id,name:String(c.name||"Cicilan"),monthly:Number(c.monthly),months:Math.round(Number(c.months)),first:String(c.first)});});
       Object.assign(S.budgets,d.budgets||{});
       const gh=new Set(S.goals.map(g=>g.id));
       (d.goals||[]).forEach(g=>{if(g&&g.id&&!gh.has(g.id)&&g.target>0)S.goals.push({id:g.id,name:String(g.name||"Goal"),target:Number(g.target),saved:Number(g.saved)||0,monthly:Number(g.monthly)||0});});
-      save();toast("Imported "+n+" new entries");
+      save();toast(T("Imported {0} new entries",n));
     }else{
       const rows=parseCSV(text);const head=rows.shift().map(x=>x.trim().toLowerCase());
       const ix=k=>head.indexOf(k);let n=0,upd=0;
@@ -536,56 +797,206 @@ function importText(name,text){
         S.tx.push({id:uid(),date:d,type:(r[ix("type")]||"").trim().toLowerCase()==="income"?"income":"expense",cat:(r[ix("category")]||"Other").trim()||"Other",amt:a,note:(r[ix("note")]||"").trim()});n++;
       });
       }
-      save();toast("Imported "+n+" entries"+(upd?" and added accounts to "+upd:""));
+      save();toast(T("Imported {0} entries",n)+(upd?T(" and added accounts to {0}",upd):""));
     }
   }catch(e){toast("Could not read that file");}
 }
-function viewDrive(){
-  const cid=h("input",{type:"text",placeholder:"Google OAuth Client ID",value:gCid(),style:"margin-top:8px"});
-  return h("div",{class:"card"},h("b",null,"Google Drive sync"),
-    h("p",{style:"color:var(--mute);margin:4px 0 0"},"Stores one private file in your own Google Drive, so your phone and PC share the same data. Setup steps are in the README on GitHub."),
-    cid,
-    h("div",{class:"row"},
-      h("button",{class:"grow",onclick:()=>{try{localStorage.setItem("mt_gcid",cid.value.trim());}catch(e){}syncNow();}},"Connect & sync"),
-      h("button",{class:"grow ghost",onclick:()=>syncNow()},"Sync now")),
-    gMsg?h("small",{style:"display:block;margin-top:8px;color:"+(gMsg.indexOf("Not")===0?"var(--exp)":"var(--mute)")},gMsg):null);
+function backBtn(){return h("button",{class:"ghost small",style:"margin-bottom:12px",onclick:()=>{more=null;render();window.scrollTo(0,0);}},"‹ Back");}
+function viewMore(){
+  if(more==="wallets")return h("div",null,backBtn(),viewWallets());
+  if(more==="trips")return h("div",null,backBtn(),viewTrips());
+  if(more==="loans")return h("div",null,backBtn(),h("h1",null,"Friends owe you"),loansBlock());
+  if(more==="backup")return h("div",null,backBtn(),viewBackup());
+  if(more==="security")return h("div",null,backBtn(),viewSecurity());
+  if(more==="lang")return h("div",null,backBtn(),viewLang());
+  const item=(ic,t,sub,k)=>h("button",{class:"menu",onclick:()=>{more=k;render();window.scrollTo(0,0);}},h("span",{class:"ic"},ic),h("span",{class:"grow"},h("b",null,t),h("small",null,sub)),h("span",{style:"color:var(--mute)"},"›"));
+  const act=(S.wallets||[]).filter(w=>!w.archived).length;
+  const LN={en:"English",id:"Bahasa Indonesia",zh:"中文（简体）"};
+  return h("div",null,h("h1",null,"More"),
+    item("🌐","Language",LN[lang],"lang"),
+    item("👛","Wallets",T("{0} active · add, rename, archive",act),"wallets"),
+    item("✈️","Business trips (dinas)",T("{0} trips",(S.trips||[]).length),"trips"),
+    item("🤝","Friends owe you",T("{0} outstanding",idr(totalOwed())),"loans"),
+    item("💾","Backup & import","Export, import, restore","backup"),
+    item("🔒","Security",getPin()?"PIN lock is on":"PIN lock is off","security"));
+}
+function viewLang(){
+  const opts=[["en","English"],["id","Bahasa Indonesia"],["zh","中文（简体）"]];
+  return h("div",null,h("h1",null,"Language"),
+    h("div",{class:"card"},opts.map(([k,n])=>h("button",{class:"full"+(lang===k?"":" ghost"),style:"margin-bottom:10px",onclick:()=>setLang(k)},(lang===k?"✓  ":"")+n))));
+}
+function viewWallets(){
+  const name=h("input",{type:"text",placeholder:"e.g. Dana, Jago, Cash"});
+  const cardCb=h("input",{type:"checkbox"});
+  const dup=(n,exceptId)=>(S.wallets||[]).some(w=>w.id!==exceptId&&w.name.toLowerCase()===n.toLowerCase());
+  const ws=(S.wallets||[]).slice().sort((a,b)=>(!!a.archived-!!b.archived));
+  return h("div",null,h("h1",null,"Wallets"),
+    h("div",{class:"card"},fld("New wallet",name),
+      h("label",{class:"chk"},cardCb,"This is a credit card"),
+      h("button",{class:"full",onclick:()=>{
+        const n=name.value.trim();
+        if(!n){toast("Enter a wallet name");return;}
+        if(dup(n)){toast("That wallet already exists");return;}
+        S.wallets=(S.wallets||[]).concat([{id:uid(),name:n,card:cardCb.checked}]);save();toast("Wallet saved");}},"Save wallet")),
+    h("div",{class:"card"},ws.length?ws.map(w=>{
+      const used=walletUse(w.name);
+      const cb=h("input",{type:"checkbox"});cb.checked=!!w.card;
+      cb.addEventListener("change",()=>{w.card=cb.checked;save();});
+      return h("div",{class:"item",style:"display:block;"+(w.archived?"opacity:.6":"")},
+        h("div",{class:"row"},h("b",{class:"grow"},w.name,w.card?h("span",{class:"tag"},"Credit card"):null,w.archived?h("span",{class:"tag off"},"Archived"):null),h("small",null,T("{0} entries",used))),
+        h("div",{class:"row",style:"margin-top:10px;flex-wrap:wrap"},
+          h("label",{class:"chk",style:"margin:0;font-size:15px"},cb,"Card"),
+          h("span",{class:"grow"}),
+          h("button",{class:"small ghost",onclick:()=>ask({title:"Rename wallet",body:used?T("{0} entries will use the new name.",used):"",field:{value:w.name},ok:"Rename",danger:false,onOk:v=>{
+            if(!v){toast("Enter a name");return false;}
+            if(v===w.name)return true;
+            if(dup(v,w.id)){toast("That name is already used");return false;}
+            const old=w.name;S.tx.forEach(t=>{if(t.acct===old)t.acct=v;});(S.loans||[]).forEach(l=>{if(l.acct===old)l.acct=v;});
+            w.name=v;save();toast("Renamed");}})},"Rename"),
+          w.archived?h("button",{class:"small ghost",onclick:()=>{w.archived=false;save();toast("Restored");}},"Restore")
+            :h("button",{class:"small ghost",onclick:()=>{w.archived=true;save();toast(T("{0} archived. History is kept.",w.name),()=>{w.archived=false;save();});}},"Archive"),
+          used===0?h("button",{class:"small del",onclick:()=>ask({title:"Delete wallet?",body:T("\"{0}\" has no entries and will be removed for good.",w.name),ok:"Delete wallet",onOk:()=>{S.wallets=S.wallets.filter(x=>x.id!==w.id);save();}})},"Delete"):null),
+        used>0?h("small",{style:"display:block;margin-top:6px"},"Has history, so it can only be archived."):null);
+    }):h("div",{class:"empty"},"No wallets yet.")),
+    h("small",null,"Archived wallets disappear from the Add form but keep their history."));
 }
 function viewBackup(){
   const file=h("input",{type:"file",accept:"*/*",style:"position:absolute;left:-9999px;width:1px;height:1px;opacity:0"});
-  file.addEventListener("change",()=>{const f=file.files[0];file.value="";if(!f)return;const r=new FileReader();r.onload=()=>importText(f.name,String(r.result));r.onerror=()=>toast("Could not open that file");r.readAsText(f);});
-  const paste=h("textarea",{placeholder:"Or paste CSV / JSON text here",style:"width:100%;min-height:90px;padding:11px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:inherit;font:inherit;margin:10px 0 8px"});
-  return h("div",null,h("h1",null,"Export & import"),
+  const confirmImport=(name,text)=>ask({title:"Import data?",body:"New entries are added to what you have; duplicates are skipped. A restore point is saved first.",ok:"Import",danger:false,onOk:()=>{snapshotBefore();importText(name,text);}});
+  file.addEventListener("change",()=>{const f=file.files[0];file.value="";if(!f)return;const r=new FileReader();r.onload=()=>confirmImport(f.name,String(r.result));r.onerror=()=>toast("Could not open that file");r.readAsText(f);});
+  const paste=h("textarea",{placeholder:"Or paste CSV / JSON text here",style:"width:100%;min-height:90px;padding:14px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:inherit;font:inherit;margin:12px 0"});
+  return h("div",null,h("h1",null,"Backup & import"),
     h("div",{class:"card"},h("b",null,"Export"),
-      h("p",{style:"color:var(--mute);margin:4px 0 10px"},"CSV opens in Excel or Google Sheets. JSON is a full backup (entries, budgets, goals, cicilan)."),
-      h("div",{class:"row"},h("button",{class:"grow",onclick:exportCSV},"Export CSV"),h("button",{class:"grow",onclick:exportJSON},"Export JSON"))),
+      h("p",{style:"color:var(--mute);margin:4px 0 12px;font-size:16px"},"CSV opens in Excel or Google Sheets. JSON is a full backup."),
+      h("div",{class:"row"},h("button",{class:"grow",onclick:exportCSV},"CSV"),h("button",{class:"grow",onclick:exportJSON},"JSON"))),
     h("div",{class:"card"},h("b",null,"Import"),
-      h("p",{style:"color:var(--mute);margin:4px 0 10px"},"Pick a .json backup, a .csv with columns date (YYYY-MM-DD), type, category, amount, note, or the CSV export from your old money app (transfers are skipped). Existing entries are kept and duplicates are skipped."),
-      h("button",{style:"width:100%",onclick:()=>file.click()},"Choose file"),
+      h("p",{style:"color:var(--mute);margin:4px 0 12px;font-size:16px"},"A .json backup, a .csv (date, type, category, amount, note), or the CSV from your old money app."),
+      h("button",{class:"full",onclick:()=>file.click()},"Choose file"),
       file,
       paste,
-      h("button",{class:"ghost",style:"width:100%",onclick:()=>{const t=paste.value.trim();if(!t){toast("Paste some text first");return;}importText(t[0]==="{"?"paste.json":"paste.csv",t);}},"Import pasted text")),
-    viewDrive());
+      h("button",{class:"ghost full",onclick:()=>{const t=paste.value.trim();if(!t){toast("Paste some text first");return;}confirmImport(t[0]==="{"?"paste.json":"paste.csv",t);}},"Import pasted text")),
+    viewDrive(),
+    h("div",{class:"card"},h("b",null,"Safety"),
+      h("p",{style:"color:var(--mute);margin:4px 0 12px;font-size:16px"},"Before any import, plan load or reset, a restore point is saved automatically."),
+      h("button",{class:"ghost full",onclick:()=>{
+        const p=getPrev();if(!p){toast("No restore point yet");return;}
+        ask({title:"Restore previous version?",body:"Your current data is replaced by the version from before the last big change.",ok:"Restore",onOk:()=>{try{const d=JSON.parse(p);S=Object.assign(emptyState(),d);save();toast("Restored");}catch(e){toast("Could not restore");}}});}},"Restore previous version"),
+      h("button",{class:"full danger",style:"margin-top:10px",onclick:()=>ask({title:"Delete ALL data?",body:"Entries, budgets, goals, cicilan, trips and wallets are erased on every synced device. Export a backup first.",word:"DELETE",ok:"Delete everything",onOk:()=>{snapshotBefore();S=emptyState();ensureWallets();save();toast("All data deleted");}})},"Delete all data")));
+}
+
+/* ---------- PIN lock (screen lock, per device) ---------- */
+const PINKEY="mt_pin";
+let locked=false,hiddenAt=0,pinBuf="",pinFails=0,lockUntil=0,lockMsg="",lockTimer=null;
+const pinOk=()=>!!(window.crypto&&crypto.subtle&&window.TextEncoder);
+function getPin(){try{return JSON.parse(localStorage.getItem(PINKEY)||"null");}catch(e){return null;}}
+async function hashStr(str,salt){
+  const enc=new TextEncoder();
+  const key=await crypto.subtle.importKey("raw",enc.encode(str),"PBKDF2",false,["deriveBits"]);
+  const bits=await crypto.subtle.deriveBits({name:"PBKDF2",salt:enc.encode(salt),iterations:100000,hash:"SHA-256"},key,256);
+  return Array.from(new Uint8Array(bits)).map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+const normCode=s=>String(s||"").toUpperCase().replace(/[^A-Z0-9]/g,"");
+function randCode(){
+  const A="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",r=new Uint8Array(10);crypto.getRandomValues(r);
+  const c=Array.from(r).map(x=>A[x%A.length]).join("");return c.slice(0,5)+"-"+c.slice(5);
+}
+async function storePin(pin,keep){
+  const salt=uid()+uid();let rec={salt,hash:await hashStr(pin,salt),len:pin.length},code=null;
+  if(keep&&keep.rhash){rec.rsalt=keep.rsalt;rec.rhash=keep.rhash;}
+  else{code=randCode();rec.rsalt=uid()+uid();rec.rhash=await hashStr(normCode(code),rec.rsalt);}
+  localStorage.setItem(PINKEY,JSON.stringify(rec));return code;
+}
+async function checkPin(pin){const p=getPin();return !!p&&(await hashStr(pin,p.salt))===p.hash;}
+async function checkCode(c){const p=getPin();return !!p&&!!p.rhash&&(await hashStr(normCode(c),p.rsalt))===p.rhash;}
+function lockNow(){if(!getPin())return;locked=true;pinBuf="";lockMsg="";document.querySelectorAll(".ov,.toast").forEach(n=>n.remove());render();}
+async function tryUnlock(){
+  const ok=await checkPin(pinBuf);pinBuf="";
+  if(ok){locked=false;pinFails=0;lockMsg="";render();window.scrollTo(0,0);return;}
+  pinFails++;lockMsg="Wrong PIN";
+  if(pinFails>=5)lockUntil=Date.now()+Math.min(600,30*Math.pow(2,pinFails-5))*1000;
+  render();
+}
+function viewLock(){
+  const p=getPin(),len=(p&&p.len)||4;
+  const wait=Math.max(0,Math.ceil((lockUntil-Date.now())/1000));
+  if(wait>0){clearTimeout(lockTimer);lockTimer=setTimeout(render,wait*1000);}
+  const press=d=>{if(Date.now()<lockUntil||pinBuf.length>=len)return;lockMsg="";pinBuf+=d;if(pinBuf.length===len)tryUnlock();else render();};
+  const key=d=>h("button",{onclick:()=>press(d)},d);
+  const dots=[];for(let i=0;i<len;i++)dots.push(h("span",{class:i<pinBuf.length?"f":""}));
+  return h("div",{class:"lock"},
+    h("div",{style:"font-size:44px"},"🔒"),
+    h("b",{style:"font-size:22px"},"Enter PIN"),
+    h("div",{class:"dots"},dots),
+    h("div",{style:"min-height:24px;color:var(--exp);text-align:center"},wait>0?T("Too many tries. Wait {0}s.",wait):lockMsg),
+    h("div",{class:"pad"},["1","2","3","4","5","6","7","8","9"].map(key),h("span"),key("0"),
+      h("button",{onclick:()=>{pinBuf=pinBuf.slice(0,-1);render();}},"⌫")),
+    h("button",{class:"ghost small",onclick:()=>ask({title:"Reset with recovery code",body:"Enter the recovery code you saved when you set the PIN. Your data stays untouched.",field:{placeholder:"Recovery code"},ok:"Reset",danger:false,onOk:async v=>{
+      if(!(await checkCode(v))){toast("Wrong recovery code");return false;}
+      try{localStorage.removeItem(PINKEY);}catch(e){}
+      locked=false;pinFails=0;lockMsg="";render();toast("PIN removed");}})},"Forgot PIN?"));
+}
+function showRecovery(code){
+  if(!code)return;
+  ask({title:"Save your recovery code",body:T("Write this code down somewhere safe. It is the only way to reset a forgotten PIN: {0}",code),ok:"OK, I saved it",danger:false,onOk:()=>true});
+}
+function viewSecurity(){
+  const p=getPin();
+  const pinField=ph=>h("input",{type:"password",inputmode:"numeric",maxlength:"6",placeholder:ph,autocomplete:"off"});
+  const valid=x=>/^\d{4,6}$/.test(x);
+  const note=h("p",{style:"color:var(--mute);font-size:15px;margin:12px 0 0"},"This is a screen lock: it keeps people who pick up your device out of the app. It does not encrypt your data, so keep your device lock and Google 2-step verification on.");
+  if(!pinOk())return h("div",null,h("h1",null,"Security"),h("div",{class:"card"},h("div",{class:"empty"},"PIN lock is not available here")));
+  if(!p){
+    const a=pinField("New PIN (4-6 digits)"),b=pinField("Confirm PIN");
+    return h("div",null,h("h1",null,"Security"),h("div",{class:"card"},
+      h("b",null,"PIN lock is off"),h("div",{style:"height:12px"}),
+      fld("New PIN (4-6 digits)",a),fld("Confirm PIN",b),
+      h("button",{class:"full",onclick:async()=>{
+        if(!valid(a.value)){toast("PIN must be 4-6 digits");return;}
+        if(a.value!==b.value){toast("PINs do not match");return;}
+        try{const code=await storePin(a.value);toast("PIN set");render();showRecovery(code);}catch(e){toast("PIN lock is not available here");}}},"Set PIN"),note));
+  }
+  const cur=pinField("Current PIN"),nw=pinField("New PIN (4-6 digits)");
+  return h("div",null,h("h1",null,"Security"),
+    h("div",{class:"card"},h("b",null,"PIN lock is on"),h("div",{style:"height:12px"}),
+      h("button",{class:"full",onclick:lockNow},"Lock now"),note),
+    h("div",{class:"card"},fld("Current PIN",cur),fld("New PIN (4-6 digits)",nw),
+      h("button",{class:"ghost full",onclick:async()=>{
+        if(!(await checkPin(cur.value))){toast("Wrong PIN");return;}
+        if(!valid(nw.value)){toast("PIN must be 4-6 digits");return;}
+        await storePin(nw.value,p);toast("PIN changed");render();}},"Change PIN"),
+      h("button",{class:"full danger",style:"margin-top:10px",onclick:async()=>{
+        if(!(await checkPin(cur.value))){toast("Wrong PIN");return;}
+        try{localStorage.removeItem(PINKEY);}catch(e){}
+        toast("PIN removed");render();}},"Remove PIN")));
 }
 
 /* ---------- shell ---------- */
 function render(){
   const app=document.getElementById("app");
-  const active=document.activeElement;
-  if(active&&active.tagName==="INPUT"&&active.type!=="file"&&active.value&&!toastMsg){/* keep typing safe: skip silent re-render */ if(!active.dataset.keep){} }
-  const views={home:viewHome,add:viewAdd,budget:viewBudget,goals:viewGoals,cicilan:viewCicilan,trips:viewTrips,backup:viewBackup};
+  if(locked){document.querySelectorAll("nav,.toast,.ov").forEach(n=>n.remove());app.replaceChildren(viewLock());return;}
+  const views={home:viewHome,add:viewAdd,plan:viewPlan,more:viewMore};
   app.replaceChildren(...[
     tab==="home"?h("h1",null,"Money Tracker"):null,
-    (tab==="home"&&gMsg)?h("small",{style:"display:block;color:"+(gMsg.indexOf("Not")===0?"var(--exp)":"var(--mute)")+";margin-bottom:8px"},gMsg):null,
+    (tab==="home"&&!gToken&&!gMsg)?h("div",{class:"banner"},"Sync is off here. Entries are kept on this device only, so export a backup."):null,
+    (tab==="home"&&gMsg)?h("small",{style:"display:block;color:"+(gErr?"var(--exp)":"var(--mute)")+";margin-bottom:8px"},gMsg):null,
     views[tab]()
   ].filter(Boolean));
-  document.querySelectorAll("nav,.toast").forEach(n=>n.remove());
-  const tabs=[["home","Home"],["add","Add"],["budget","Budget"],["goals","Goals"],["cicilan","Cicilan"],["trips","Dinas"],["backup","Backup"]];
-  document.body.append(h("nav",null,tabs.map(([k,l])=>h("button",{class:tab===k?"on":"",onclick:()=>{tab=k;render();}},l))));
-  if(toastMsg)document.body.append(h("div",{class:"toast"},toastMsg));
+  document.querySelectorAll("nav").forEach(n=>n.remove());
+  const tabs=[["home","🏠","Home"],["add","➕","Add"],["plan","📊","Plan"],["more","⚙️","More"]];
+  document.body.append(h("nav",null,tabs.map(([k,ic,l])=>h("button",{class:tab===k?"on":"",onclick:()=>{
+    if(tab==="add"&&k!=="add"&&edit){edit=null;resetDraft();}
+    if(k==="more")more=null;
+    budDraft=null;tab=k;render();window.scrollTo(0,0);}},h("span",{class:"ic"},ic),l))));
 }
 loadLocal();
-render();
+ensureWallets();
+lastIds=idsNow();
 if(navigator.serviceWorker){navigator.serviceWorker.register("sw.js").catch(()=>{});}
+locked=!!getPin();
+document.addEventListener("visibilitychange",()=>{if(document.hidden){hiddenAt=Date.now();}else if(getPin()&&hiddenAt&&Date.now()-hiddenAt>60000&&!locked){lockNow();}});
+document.documentElement.lang=lang==="zh"?"zh-CN":lang;
+render();
+initScan();
 </script>
 </body>
 </html>
