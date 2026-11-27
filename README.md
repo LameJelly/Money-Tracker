@@ -26,3 +26,6 @@ While the consent screen is in "Testing", Google asks you to sign in again about
 - PIN lock (More → Security) is a screen lock, not encryption. Keep your device lock and Google 2-step verification on.
 - Exported CSV/JSON files are plain text. Store them somewhere safe.
 - Never record card numbers or PINs in notes.
+
+## Shared book (two people)
+More → Shared book: enter your name, your partner's Google email, tap "Create shared book & invite". Your partner opens the app, enters their name and Google API key, then taps "Join a shared book" and picks the file. Both see and edit everything. Needs a Google API key (Cloud Console → Credentials) and the partner added as a Test user.
