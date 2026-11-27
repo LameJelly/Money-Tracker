@@ -153,7 +153,7 @@ function ensureWallets(){
   if(!S.wallets)S.wallets=ACCTS.map(n=>({id:"w_"+slug(n),name:n,card:/^Credit Card/.test(n)}));
   const have=new Set(S.wallets.map(w=>w.name));
   const add=n=>{if(n&&!have.has(n)){have.add(n);S.wallets.push({id:"w_"+slug(n),name:n,card:/^Credit Card/.test(n)});}};
-  S.tx.forEach(t=>add(t.acct));(S.loans||[]).forEach(l=>add(l.acct));
+  S.tx.forEach(t=>{add(t.acct);add(t.to);});(S.loans||[]).forEach(l=>add(l.acct));
 }
 function walletNames(cur){
   const a=(S.wallets||[]).filter(w=>!w.archived).map(w=>w.name);
@@ -862,19 +862,20 @@ function importText(name,text){
         const have=new Map(S.tx.map(t=>[t.id,t]));
         rows.forEach(r=>{
           const ty=(r[ix("type")]||"");
-          if(ty.indexOf("Transfer")>=0)return;
+          const isTr=ty.indexOf("Transfer")>=0;
           const m=/^(\w{3}) (\d{1,2}), (\d{4})/.exec((r[ix("time")]||"").trim());
           const a=Number(r[ix("amount")]);
           if(!m||!MON[m[1].toLowerCase()]||!(a>0))return;
           const d=m[3]+"-"+String(MON[m[1].toLowerCase()]).padStart(2,"0")+"-"+String(m[2]).padStart(2,"0");
           const note=(ix("notes")>=0?(r[ix("notes")]||""):"").trim().replace(/\s+/g," ");
-          const key=[r[ix("time")],ty,r[ix("amount")],r[ix("category")],note].join("|");
+          const key=[r[ix("time")],ty,r[ix("amount")],r[ix("category")],note].concat(isTr?[r[ix("account")]]:[]).join("|");
           let hh=0;for(let i=0;i<key.length;i++)hh=(hh*31+key.charCodeAt(i))|0;
           const id="o"+(hh>>>0).toString(36)+key.length.toString(36);
           const ac=(ix("account")>=0?(r[ix("account")]||""):"").trim();
-          if(have.has(id)){const ex=have.get(id);if(!ex.acct&&ac){ex.acct=ac;upd++;}return;}
-          const t={id,date:d,type:ty.indexOf("Income")>=0?"income":"expense",cat:((r[ix("category")]||"").trim()||"Other"),amt:a,note:note.slice(0,80)};
-          if(ac)t.acct=ac;have.set(id,t);S.tx.push(t);n++;
+          if(have.has(id)){const ex=have.get(id);if(!isTr&&!ex.acct&&ac){ex.acct=ac;upd++;}return;}
+          let trA="",trB="";if(isTr){const pp=ac.split("->").map(s=>s.trim());if(pp.length!==2||!pp[0]||!pp[1]||pp[0]===pp[1])return;trA=pp[0];trB=pp[1];}
+          const t={id,date:d,type:isTr?"transfer":(ty.indexOf("Income")>=0?"income":"expense"),cat:isTr?"Transfer":((r[ix("category")]||"").trim()||"Other"),amt:a,note:note.slice(0,80)};
+          if(isTr){t.acct=trA;t.to=trB;}else if(ac)t.acct=ac;have.set(id,t);S.tx.push(t);n++;
         });
       }else{
       if(ix("date")<0||ix("amount")<0)throw new Error("bad header");
